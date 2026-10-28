@@ -1,0 +1,43 @@
+{
+ "version":"competitors-2026-10-03-v3",
+ "weights":{"product":35,"role":25,"market":20,"importance":10,"freshness":10},
+ "minMarketCap":1000000000,"minDollarVolume":10000000,"maxFilingAgeDays":550,"maxVerificationAgeDays":9,"minDirectShare":20,
+ "products":[
+  {"id":"dram","name":"DRAM 메모리","aliases":["DRAM","디램","dynamic random access memory"],"uses":["휘발성","volatile","메모리","memory"],"family":"semiconductor"},
+  {"id":"nand","name":"NAND 플래시","aliases":["NAND","낸드","낸드플래시"],"uses":["비휘발성","non-volatile","storage","저장","memory","메모리"],"family":"semiconductor"},
+  {"id":"hbm","name":"HBM 고대역폭 메모리","aliases":["HBM","high-bandwidth memory","고대역폭 메모리"],"uses":["memory","메모리","AI","인공지능"],"family":"semiconductor"},
+  {"id":"ssd","name":"SSD 저장장치","aliases":["SSD","solid state drive","solid-state drive"],"uses":["storage","저장","data center","데이터센터"],"family":"semiconductor"},
+  {"id":"gpu","name":"GPU 연산 장치","aliases":["GPU","graphics processing unit","그래픽처리장치"],"uses":["graphics","그래픽","compute","computing","연산"],"family":"semiconductor"},
+  {"id":"smartphone","name":"스마트폰","aliases":["smartphone","스마트폰","iPhone","갤럭시 스마트폰"],"uses":["mobile","모바일","phone","휴대"],"family":"devices"},
+  {"id":"oled","name":"OLED 디스플레이 패널","aliases":["OLED","유기발광다이오드"],"uses":["display","디스플레이","panel","패널"],"family":"devices"},
+  {"id":"lithography","name":"반도체 노광 장비","aliases":["lithography systems","노광장비","노광 장비"],"uses":["wafer","웨이퍼","반도체","semiconductor"],"family":"semiconductor"},
+  {"id":"etch","name":"반도체 식각 장비","aliases":["etch systems","etching equipment","식각장비","식각 장비"],"uses":["wafer","웨이퍼","반도체","semiconductor"],"family":"semiconductor"},
+  {"id":"battery","name":"리튬이온 배터리 셀","aliases":["lithium-ion battery","lithium ion batteries","리튬이온전지","리튬이온 배터리"],"uses":["energy storage","에너지저장","electric vehicle","전기차","battery","전지"],"family":"energy"},
+  {"id":"cdn","name":"콘텐츠 전송 네트워크","aliases":["content delivery network","콘텐츠 전송 네트워크"],"uses":["content","콘텐츠","delivery","전송"],"family":"software"},
+  {"id":"endpoint","name":"엔드포인트 보안","aliases":["endpoint security","엔드포인트 보안"],"uses":["security","보안","protection","보호"],"family":"software"}
+ ],
+ "roles":{
+  "manufacture":{"name":"제조","patterns":["manufactur(?:e|es|ing)","fabricat(?:e|es|ion)","생산","제조"]},
+  "design":{"name":"설계","patterns":["design(?:s|ing)?","설계"]},
+  "equipment":{"name":"장비 공급","patterns":["equipment","systems for .*manufacturing","장비"]},
+  "material":{"name":"소재 공급","patterns":["raw material","소재","원재료"]},
+  "distribution":{"name":"유통","patterns":["we distribute","our distribution business","당사는.{0,30}유통"]},
+  "platform":{"name":"플랫폼·서비스","patterns":["we operate.{0,50}platform","we provide.{0,50}platform","our subscription service","당사는.{0,50}플랫폼을 제공","당사는.{0,50}플랫폼을 운영"]}
+ },
+ "markets":{
+  "datacenter":{"name":"데이터센터·서버","aliases":["data center","datacenter","server","데이터센터","데이터 센터","서버"]},
+  "mobile":{"name":"모바일 기기","aliases":["mobile","smartphone","모바일","스마트폰"]},
+  "pc":{"name":"PC·컴퓨팅","aliases":["personal computer","computing","컴퓨팅","PC"]},
+  "automotive":{"name":"자동차","aliases":["automotive","vehicle","자동차","차량"]},
+  "industrial":{"name":"산업용","aliases":["industrial","산업용"]},
+  "enterprise":{"name":"기업 IT","aliases":["enterprise","기업 고객","기업용"]},
+  "consumer":{"name":"소비자 기기","aliases":["consumer","소비자","컨슈머"]}
+ },
+ "customers":{
+  "oem":{"name":"기기 제조업체(OEM)","aliases":["OEM","original equipment manufacturer","제조업체","생산 업체","전자 업체"]},
+  "cloud":{"name":"클라우드 사업자","aliases":["cloud customers","cloud providers","hyperscalers","클라우드 고객","클라우드 사업자"]},
+  "enterprise":{"name":"기업 고객","aliases":["enterprise customers","business customers","기업 고객"]},
+  "consumer":{"name":"일반 소비자","aliases":["individual consumers","end consumers","개인 소비자","일반 소비자"]}
+ },
+ "supplyProducts":[["lithography","dram"],["lithography","nand"],["etch","dram"],["etch","nand"],["hbm","gpu"],["dram","smartphone"],["nand","smartphone"],["oled","smartphone"]]
+}

@@ -1,0 +1,322 @@
+{
+  "version": "catalyst-1.6",
+  "promptVersion": "catalyst-analyzer-3",
+  "stockScoreVersion": "STOCK_BENEFIT_V1",
+  "cryptoScoreVersion": "CRYPTO_IMPACT_V1",
+  "model": "gpt-5.4-mini-2026-03-17",
+  "maxPathDepth": 3,
+  "maxSources": 10,
+  "maxSourceCharacters": 6000,
+  "maxContextCharacters": 36000,
+  "stockCandidates": 10,
+  "cryptoCandidates": 12,
+  "maxQueue": 12,
+  "maxConcurrent": 4,
+  "workerConcurrent": 1,
+  "requestsPerHour": 12,
+  "rpm": 30,
+  "tpm": 350000,
+  "warningTokens": 1700000,
+  "softTokens": 2000000,
+  "hardTokens": 2200000,
+  "maxQueryTokens": 30000,
+  "outputTokens": 1800,
+  "deepOutputTokens": 2500,
+  "timeoutMs": 60000,
+  "runTimeoutMs": 240000,
+  "businessFreshDays": 450,
+  "eventFreshDays": 14,
+  "minimumScoreCoverage": 0.6,
+  "ttl": {
+    "entity": 86400000,
+    "event": 3600000,
+    "stockMove": 1800000,
+    "cryptoMove": 900000,
+    "business": 604800000,
+    "graph": 2592000000,
+    "failure": 60000
+  },
+  "stockWeights": {
+    "directness": 20,
+    "revenueExposure": 15,
+    "demandSensitivity": 15,
+    "customerMarket": 10,
+    "marketPosition": 10,
+    "timing": 10,
+    "recurringEffect": 10,
+    "capacity": 10
+  },
+  "cryptoWeights": {
+    "directness": 20,
+    "protocolExposure": 20,
+    "valueCapture": 25,
+    "narrative": 5,
+    "tokenomics": 10,
+    "ecosystem": 10,
+    "marketStructure": 10
+  },
+  "nativeChains": {},
+  "synonyms": {
+    "반도체": [
+      "semiconductor"
+    ],
+    "메모리": [
+      "memory",
+      "DRAM",
+      "NAND",
+      "HBM"
+    ],
+    "고대역폭메모리": [
+      "HBM",
+      "high bandwidth memory"
+    ],
+    "데이터센터": [
+      "data center",
+      "datacenter"
+    ],
+    "전력": [
+      "power",
+      "electricity"
+    ],
+    "배터리": [
+      "battery"
+    ],
+    "스테이블코인": [
+      "stablecoin"
+    ]
+  },
+  "validationVersion": "claim-ledger-2.5",
+  "relationFreshnessPolicies": [
+    {
+      "policy_id": "TECHNICAL_PROCESS",
+      "relation_type": [
+        "REQUIRES",
+        "DEPENDS_ON"
+      ],
+      "claim_type": [
+        "transmission"
+      ],
+      "max_age": 126144000000,
+      "event_driven": true,
+      "invalidate_events": [
+        "TECHNICAL_SUPERSEDED"
+      ],
+      "description": "기술 공정 · 개정 근거로 대체"
+    },
+    {
+      "policy_id": "PRODUCT_USED_IN_PROCESS",
+      "relation_type": [
+        "USED_IN"
+      ],
+      "claim_type": [
+        "transmission"
+      ],
+      "max_age": 126144000000,
+      "event_driven": true,
+      "invalidate_events": [
+        "TECHNICAL_SUPERSEDED"
+      ],
+      "description": "제품의 공정 용도"
+    },
+    {
+      "policy_id": "INDUSTRY_STRUCTURE",
+      "relation_type": [
+        "PART_OF"
+      ],
+      "claim_type": [
+        "business"
+      ],
+      "max_age": 126144000000,
+      "event_driven": true,
+      "invalidate_events": [
+        "STRUCTURE_CHANGED"
+      ],
+      "description": "산업 구조"
+    },
+    {
+      "policy_id": "COMPANY_PRODUCT",
+      "relation_type": [
+        "PRODUCES"
+      ],
+      "claim_type": [
+        "business"
+      ],
+      "max_age": 34560000000,
+      "event_driven": true,
+      "invalidate_events": [
+        "NEW_REPORT",
+        "BUSINESS_ENDED"
+      ],
+      "description": "최신 연차·분기 공시 확인"
+    },
+    {
+      "policy_id": "COMPANY_BUSINESS",
+      "relation_type": [
+        "PRODUCES"
+      ],
+      "claim_type": [
+        "business",
+        "revenue_share"
+      ],
+      "max_age": 34560000000,
+      "event_driven": true,
+      "invalidate_events": [
+        "NEW_REPORT",
+        "BUSINESS_ENDED"
+      ],
+      "description": "최신 공시 우선, 매 요청 공급원 목록 갱신 TTL 적용"
+    },
+    {
+      "policy_id": "CUSTOMER_SUPPLIER",
+      "relation_type": [
+        "CUSTOMER_OF",
+        "SUPPLIER_OF",
+        "SUPPLIES_TO"
+      ],
+      "claim_type": [
+        "customer"
+      ],
+      "max_age": 23328000000,
+      "event_driven": true,
+      "invalidate_events": [
+        "RELATIONSHIP_ENDED",
+        "NEW_CONTRACT"
+      ],
+      "description": "고객·공급 관계"
+    },
+    {
+      "policy_id": "CAPEX",
+      "relation_type": [],
+      "claim_type": [
+        "event"
+      ],
+      "max_age": 15552000000,
+      "event_driven": true,
+      "invalidate_events": [
+        "COMPLETED",
+        "CANCELLED",
+        "PLAN_CHANGED"
+      ],
+      "description": "계획 → 실행 → 완료 수명"
+    },
+    {
+      "policy_id": "NEW_ORDER",
+      "relation_type": [],
+      "claim_type": [
+        "event"
+      ],
+      "max_age": 15552000000,
+      "event_driven": true,
+      "invalidate_events": [
+        "FULFILLED",
+        "CANCELLED"
+      ],
+      "description": "수주 이행 수명"
+    },
+    {
+      "policy_id": "PRODUCTION_PLAN",
+      "relation_type": [],
+      "claim_type": [
+        "event"
+      ],
+      "max_age": 15552000000,
+      "event_driven": true,
+      "invalidate_events": [
+        "IN_PRODUCTION",
+        "CANCELLED"
+      ],
+      "description": "생산 계획 수명"
+    },
+    {
+      "policy_id": "REGULATION",
+      "relation_type": [],
+      "claim_type": [
+        "event"
+      ],
+      "max_age": 126144000000,
+      "event_driven": true,
+      "invalidate_events": [
+        "REPEALED",
+        "AMENDED"
+      ],
+      "description": "유효 법령 버전"
+    },
+    {
+      "policy_id": "CRYPTO_TOKENOMICS",
+      "relation_type": [
+        "GOVERNANCE_OF"
+      ],
+      "claim_type": [
+        "tokenomics",
+        "value_capture"
+      ],
+      "max_age": 5184000000,
+      "event_driven": true,
+      "invalidate_events": [
+        "GOVERNANCE_EXECUTED"
+      ],
+      "description": "실행된 거버넌스 변경 시 이전 관계 대체"
+    },
+    {
+      "policy_id": "CRYPTO_PROTOCOL_METRIC",
+      "relation_type": [],
+      "claim_type": [
+        "protocol_metric"
+      ],
+      "max_age": 86400000,
+      "event_driven": false,
+      "invalidate_events": [],
+      "description": "TVL·수익·사용자 일별 관측"
+    },
+    {
+      "policy_id": "PROTOCOL_METRIC_HOURLY",
+      "relation_type": [],
+      "claim_type": [
+        "protocol_metric"
+      ],
+      "max_age": 3600000,
+      "event_driven": false,
+      "invalidate_events": [],
+      "description": "시간별 수급 지표"
+    },
+    {
+      "policy_id": "MARKET_MOVE",
+      "relation_type": [
+        "INCREASES",
+        "DECREASES"
+      ],
+      "claim_type": [
+        "event",
+        "attribution"
+      ],
+      "max_age": 86400000,
+      "event_driven": false,
+      "invalidate_events": [],
+      "description": "확정 일봉/시간봉 시장 맥락"
+    },
+    {
+      "policy_id": "MARKET_INTRADAY",
+      "relation_type": [],
+      "claim_type": [
+        "event"
+      ],
+      "max_age": 1800000,
+      "event_driven": false,
+      "invalidate_events": [],
+      "description": "장중 30분 맥락"
+    },
+    {
+      "policy_id": "EVENT_FACT",
+      "relation_type": [],
+      "claim_type": [
+        "event"
+      ],
+      "max_age": 1209600000,
+      "event_driven": true,
+      "invalidate_events": [
+        "EVENT_SUPERSEDED"
+      ],
+      "description": "원인이 확인된 사건의 증거 유효기간 · 가격 관측과 구분"
+    }
+  ]
+}

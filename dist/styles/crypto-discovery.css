@@ -1,0 +1,20 @@
+.crypto-highlight-card{padding:20px;min-width:0}
+.crypto-highlight-heading{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:14px}
+.crypto-highlight-heading h2{font-size:16px}.crypto-highlight-heading>button{font-size:12px;color:var(--brand);white-space:nowrap}
+.crypto-highlight-row{display:flex;align-items:center;text-align:left;gap:10px;width:100%;padding:8px 0;border-radius:8px;min-height:58px}
+.crypto-highlight-row:hover{background:var(--brand-soft)}
+.crypto-highlight-row .crypto-coin-icon{width:32px;height:32px;font-size:15px}
+.crypto-highlight-row>span:nth-child(2){flex:1;min-width:0}
+.crypto-highlight-row b{font-size:14px}.crypto-highlight-row small{display:block;font-size:11px;color:var(--secondary);margin-top:3px}
+.crypto-highlight-row strong{font-size:15px;white-space:nowrap;font-variant-numeric:tabular-nums}
+.crypto-highlight-note{display:block;margin-top:12px;padding-top:10px;border-top:1px solid var(--line);font-size:11px;color:var(--secondary)}
+.crypto-category-tabs{display:flex;flex-wrap:wrap;gap:5px;padding:0 24px 12px}
+.crypto-category-tabs button{padding:8px 11px;border-radius:7px;font-size:13px;color:var(--secondary);white-space:nowrap}
+.crypto-category-tabs button[aria-pressed=true]{background:var(--brand-soft);color:var(--brand);font-weight:700}
+.crypto-category-tabs button:focus-visible,.crypto-highlight-row:focus-visible{outline:2px solid var(--brand);outline-offset:2px}
+.crypto-category-description{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;padding:0 24px 14px;font-size:11px;color:var(--secondary)}
+.crypto-category-description button{color:var(--brand)}
+.crypto-list,.crypto-detail{scroll-margin-top:80px}
+.crypto-fx-basis{font-size:12px;color:var(--secondary);margin:0 0 18px;line-height:1.6}
+@media(max-width:900px){.crypto-majors{grid-template-columns:repeat(3,minmax(0,1fr))}.crypto-highlight-card{padding:14px}.crypto-highlight-heading{gap:6px}.crypto-highlight-heading h2{font-size:14px}.crypto-highlight-row{gap:6px}.crypto-highlight-row .crypto-coin-icon{display:none}.crypto-highlight-row strong{font-size:13px}}
+@media(max-width:600px){.crypto-majors{grid-template-columns:1fr}.crypto-highlight-card{padding:16px}.crypto-highlight-heading{margin-bottom:4px}.crypto-highlight-row .crypto-coin-icon{display:grid}.crypto-highlight-rows{display:grid;grid-template-columns:1fr}.crypto-highlight-row{padding:6px;min-height:49px}.crypto-highlight-heading h2{font-size:16px}.crypto-highlight-note{margin-top:6px}.crypto-category-tabs{padding:0 16px 10px;gap:4px}.crypto-category-tabs button{font-size:12px;padding:7px 9px}.crypto-category-description{padding:0 16px 12px}}

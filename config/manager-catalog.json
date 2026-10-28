@@ -1,0 +1,10 @@
+{
+  "ranking": {
+    "mode": "editorial",
+    "windowDays": 30,
+    "minimumVisitors": 100,
+    "visitorWeight": 1,
+    "favoriteWeight": 2
+  },
+  "managers": []
+}

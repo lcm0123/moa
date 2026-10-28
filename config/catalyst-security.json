@@ -1,0 +1,26 @@
+{
+  "version": "security-1",
+  "maxHtmlBytes": 32000000,
+  "maxPdfBytes": 10000000,
+  "maxArchiveBytes": 15000000,
+  "maxArchiveFiles": 100,
+  "maxUncompressedBytes": 32000000,
+  "maxCompressionRatio": 200,
+  "maxRedirects": 4,
+  "parserTimeoutMs": 90000,
+  "maxPdfPages": 600,
+  "rawRetentionHours": 24,
+  "blockedLegacyUrlHashes": [
+    "f0c0ba3ab84bb04c37e6b47527c8f62714a51405f5152e64b87848ce921b5a0d"
+  ],
+  "allowedMimeTypes": [
+    "text/html",
+    "application/xhtml+xml",
+    "text/plain",
+    "application/xml",
+    "text/xml",
+    "application/json",
+    "application/pdf"
+  ],
+  "safeCacheHours": 24
+}

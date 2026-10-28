@@ -1,0 +1,35 @@
+/* Home A: individual index cards, preserving each source and session label. */
+.market-panel #market-indices-view>.panel-heading{height:auto;min-height:58px;padding:0 0 14px}
+.market-panel #market-indices-view .title-group h2{font-size:17px}
+.market-panel .market-index-grid.us-indices,.market-panel .market-index-grid.kr-indices{display:grid;grid-template-columns:repeat(var(--indicator-count,5),minmax(0,1fr));gap:12px;padding:0;overflow-x:visible;overscroll-behavior-x:contain;scrollbar-width:thin;align-items:stretch}
+.market-panel .cash-group,.market-panel .futures-group,.market-panel .cash-index-cards,.market-panel .futures-index-cards{display:contents}
+.market-panel .instrument-group-heading,.market-panel .futures-basis{display:none}
+.market-panel .market-index-grid .indicator-card{display:flex;flex-direction:column;min-width:0;padding:16px!important;border:1px solid var(--line);border-radius:var(--radius);background:var(--surface);margin:0;gap:0}
+.market-panel .market-index-grid>.indicator-card:first-child,.market-panel .cash-index-cards>.indicator-card:first-child{padding-left:16px!important}
+.market-panel .market-index-grid>.indicator-card:last-child,.market-panel .futures-index-cards>.indicator-card:last-child{border-right:1px solid var(--line);padding-right:16px!important}
+.market-panel .indicator-name{gap:5px;margin:0 0 7px;align-items:center}
+.market-panel .indicator-name h3{font-size:13px;line-height:1.4;white-space:normal;letter-spacing:-.3px}
+.market-panel .indicator-name>span{display:inline;font-size:9px;padding:2px 4px;white-space:nowrap}
+.market-panel .us-indices .indicator-name>span{display:inline!important;color:var(--secondary);background:var(--surface-subtle);border-radius:3px}
+.market-panel .indicator-value{font-size:23px;line-height:1.3;font-weight:700;letter-spacing:-.65px;white-space:nowrap;text-align:left;font-variant-numeric:tabular-nums}
+.market-panel .macro-card .indicator-value{font-size:16px;line-height:30px;letter-spacing:-.5px}
+.market-panel .indicator-change{font-size:11px;line-height:1.5;margin:3px 0 5px;text-align:left;min-height:17px;font-variant-numeric:tabular-nums}
+.market-panel .macro-card .indicator-change{color:var(--secondary)}
+.market-panel .indicator-contract,.market-panel .indicator-previous{display:none}
+.market-panel .indicator-chart,.market-panel .indicator-chart.index-daily-chart{height:44px!important;margin:2px 0 4px!important;min-height:0}
+.market-panel .indicator-chart .sparkline{height:34px!important;width:100%}
+.market-panel .index-chart-range{font-size:8px;line-height:10px}
+.market-panel .chart-unavailable{height:40px;font-size:10px;white-space:normal;text-align:left}
+.market-panel .indicator-meta{font-size:10px!important;line-height:1.5;padding:3px 0 0!important;margin-top:auto;overflow-wrap:anywhere;min-height:0;text-align:left;color:var(--secondary)}
+.market-panel .indicator-chart-open span{display:none}
+.market-panel .indicator-chart-open:hover{background:var(--brand-hover-tint)}
+.market-panel .indicator-chart-open:focus-visible{outline:2px solid var(--brand);outline-offset:-2px}
+.market-panel .futures-text-card .indicator-meta{padding-top:10px!important}
+.market-panel .cash-index-empty{min-height:0;padding:5px 10px 5px 0;font-size:12px;align-self:center}
+.market-panel .cash-index-empty strong{font-size:13px}.market-panel .cash-index-empty span,.market-panel .cash-index-empty small{font-size:11px}
+.market-panel .market-footer{padding:12px 0 0;font-size:11px;min-height:0;line-height:1.5}
+.market-panel #market-watchlist-view{border-top:1px solid var(--line)}
+.market-panel .watch-count{font-size:17px;color:var(--text);margin:0;font-weight:650}
+.market-panel .watch-toolbar{padding-top:14px;padding-bottom:12px}
+@media(min-width:769px) and (max-width:1100px){.market-panel .market-index-grid.us-indices,.market-panel .market-index-grid.kr-indices{grid-template-columns:repeat(3,minmax(0,1fr))}}
+@media(max-width:768px){.market-panel #market-indices-view>.panel-heading{min-height:60px;gap:8px}.market-panel .feed-status{font-size:10px}.market-panel .market-index-grid.us-indices,.market-panel .market-index-grid.kr-indices{padding:0;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}.market-panel .market-index-grid .indicator-card{padding:14px!important}.market-panel .indicator-value{font-size:22px}.market-panel .indicator-name h3{font-size:13px}.market-panel .market-footer{padding:10px 0}.market-panel .market-footer>span:last-child{display:none}}

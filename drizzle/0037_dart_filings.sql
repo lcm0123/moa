@@ -1,0 +1,5 @@
+CREATE TABLE IF NOT EXISTS dart_targets(ticker TEXT PRIMARY KEY,corp_code TEXT,name TEXT,mapping_at TEXT,error TEXT);
+CREATE TABLE IF NOT EXISTS dart_ranges(ticker TEXT NOT NULL,date_from TEXT NOT NULL,date_to TEXT NOT NULL,is_live INTEGER NOT NULL DEFAULT 0,next_sync INTEGER NOT NULL DEFAULT 0,lease_until INTEGER NOT NULL DEFAULT 0,synced_at TEXT,error TEXT,PRIMARY KEY(ticker,date_from,date_to));
+CREATE TABLE IF NOT EXISTS dart_filings(receipt TEXT PRIMARY KEY,ticker TEXT NOT NULL,corp_code TEXT NOT NULL,corp_name TEXT NOT NULL,title TEXT NOT NULL,received_date TEXT NOT NULL,submitter TEXT NOT NULL,filing_type TEXT,badges TEXT NOT NULL,raw TEXT NOT NULL,first_seen_at TEXT NOT NULL,updated_at TEXT NOT NULL,event_id TEXT);
+CREATE INDEX IF NOT EXISTS dart_filing_stock_date ON dart_filings(ticker,received_date DESC,receipt DESC);
+CREATE TABLE IF NOT EXISTS dart_subscriptions(reader_hash TEXT NOT NULL,ticker TEXT NOT NULL,created_at TEXT NOT NULL,start_date TEXT NOT NULL,baseline_receipt TEXT,baseline_at TEXT,PRIMARY KEY(reader_hash,ticker));

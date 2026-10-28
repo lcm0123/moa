@@ -1,0 +1,83 @@
+{
+  "version": "7",
+  "dialect": "sqlite",
+  "entries": [
+    {
+      "idx": 0,
+      "version": "6",
+      "when": 1790304702790,
+      "tag": "0000_chilly_overlord",
+      "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "6",
+      "when": 1790309717370,
+      "tag": "0001_bizarre_madame_masque",
+      "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "6",
+      "when": 1790311167991,
+      "tag": "0002_outgoing_captain_marvel",
+      "breakpoints": true
+    },
+    {
+      "idx": 3,
+      "version": "6",
+      "when": 1790314333265,
+      "tag": "0003_loose_queen_noir",
+      "breakpoints": true
+    },
+    {
+      "idx": 4,
+      "version": "6",
+      "when": 1790319970218,
+      "tag": "0004_superb_omega_red",
+      "breakpoints": true
+    },
+    {
+      "idx": 5,
+      "version": "6",
+      "when": 1790321234160,
+      "tag": "0005_fluffy_george_stacy",
+      "breakpoints": true
+    },
+    {
+      "idx": 6,
+      "version": "6",
+      "when": 1790324682466,
+      "tag": "0006_dapper_wolfsbane",
+      "breakpoints": true
+    },
+    {
+      "idx": 7,
+      "version": "6",
+      "when": 1790402365429,
+      "tag": "0007_research_events",
+      "breakpoints": true
+    },
+    {
+      "idx": 8,
+      "version": "6",
+      "when": 1790407990798,
+      "tag": "0016_fsc_stock_history",
+      "breakpoints": true
+    },
+    {
+      "idx": 9,
+      "version": "6",
+      "when": 1790417340150,
+      "tag": "0017_fsc_index_history",
+      "breakpoints": true
+    },
+    {
+      "idx": 10,
+      "version": "6",
+      "when": 1790417755378,
+      "tag": "0018_krx_index_snapshots",
+      "breakpoints": true
+    }
+  ]
+}

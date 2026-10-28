@@ -1,0 +1,16 @@
+{
+  "algorithmVersion": "news-inline-2.0",
+  "promptVersion": "event-path-2.4-bounded-spans",
+  "language": "ko",
+  "maxCards": 3,
+  "retrievalCandidates": 30,
+  "maxPaths": 4,
+  "maxDailyJobs": 60,
+  "maxAttempts": 2,
+  "retryMs": 900000,
+  "maxEvidenceAgeMs": 47520000000,
+  "maxArticleAgeMs": 259200000,
+  "maxPolls": 20,
+  "pollMs": 15000,
+  "weights": {"necessity":25,"adoption":25,"materiality":20,"capability":15,"timing":15}
+}

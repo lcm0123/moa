@@ -1,0 +1,9 @@
+export class CryptoStore {
+ constructor(db){this.db=db;}
+ async read(key){const row=(await this.db.prepare('SELECT * FROM cmc_cache WHERE cache_key=?').bind(key).all()).results[0];return row?{data:JSON.parse(row.payload),receivedAt:row.received_at,expires:row.expires_at}:null;}
+ async write(key,data,ttl){const now=new Date().toISOString();await this.db.prepare('INSERT INTO cmc_cache(cache_key,payload,received_at,expires_at) VALUES(?,?,?,?) ON CONFLICT(cache_key) DO UPDATE SET payload=excluded.payload,received_at=excluded.received_at,expires_at=excluded.expires_at').bind(key,JSON.stringify(data),now,Date.now()+ttl).run();return {data,receivedAt:now,expires:Date.now()+ttl};}
+ async diagnostic(endpoint,http,code,message,retry=0){await this.db.prepare('INSERT INTO cmc_diagnostics VALUES(?,?,?,?,?,?) ON CONFLICT(endpoint) DO UPDATE SET http_status=excluded.http_status,code=excluded.code,message=excluded.message,checked_at=excluded.checked_at,retry_after=excluded.retry_after').bind(endpoint,http,String(code??''),message,new Date().toISOString(),retry).run();}
+ async diagnostics(){return (await this.db.prepare('SELECT * FROM cmc_diagnostics').all()).results;}
+ async usage(rest=0,ws=0,requests=0){const day=new Date().toISOString().slice(0,10);if(rest||ws||requests)await this.db.prepare('INSERT INTO cmc_usage(day,rest_credits,ws_messages,requests) VALUES(?,?,?,?) ON CONFLICT(day) DO UPDATE SET rest_credits=rest_credits+excluded.rest_credits,ws_messages=ws_messages+excluded.ws_messages,requests=requests+excluded.requests').bind(day,rest,ws,requests).run();return (await this.db.prepare('SELECT * FROM cmc_usage WHERE day>=?').bind(day.slice(0,7)+'-01').all()).results;}
+ async prune(){await this.db.prepare('DELETE FROM cmc_cache WHERE expires_at<? AND cache_key NOT LIKE ? AND cache_key NOT LIKE ?').bind(Date.now()-45*86400000,'%listings%','%map%').run();}
+}

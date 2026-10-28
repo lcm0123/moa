@@ -1,0 +1,31 @@
+import {standaloneQuarters} from './quarter-normalization.mjs';
+export const financialMetrics={revenue:{label:'매출액',tags:['RevenueFromContractWithCustomerExcludingAssessedTax','Revenues','SalesRevenueNet']},operatingIncome:{label:'영업이익',tags:['OperatingIncomeLoss']},netIncome:{label:'순이익',tags:['NetIncomeLoss']},eps:{label:'희석 EPS',tags:['EarningsPerShareDiluted'],unit:'USD/shares'},operatingCashFlow:{label:'영업현금흐름',tags:['NetCashProvidedByUsedInOperatingActivities']},capex:{label:'설비투자',tags:['PaymentsToAcquirePropertyPlantAndEquipment']},freeCashFlow:{label:'잉여현금흐름',tags:[]}};
+const days=f=>(Date.parse(f.end)-Date.parse(f.start))/86400000+1;
+const forms=f=>/^10-[KQ](\/A)?$/.test(f.form||'');
+const fiscalForm=f=>/^10-K(\/A)?$/.test(f.form||'')&&f.fp==='FY'&&days(f)>=330&&days(f)<=380;
+export function financialYoY(current,previous){return current&&previous&&current.unit===previous.unit&&current.tag===previous.tag&&current.basis===previous.basis&&Math.abs(days(current)-days(previous))<=14&&Date.parse(current.end)-Date.parse(previous.end)>=330*86400000&&Date.parse(current.end)-Date.parse(previous.end)<=400*86400000&&previous.value>0?(current.value/previous.value-1)*100:null;}
+export function parseCompanyFacts(data,submissions,now=Date.now()){
+ if(Number(data.cik)!==Number(submissions.cik))throw new Error('CIK mismatch');
+ const today=new Date(now).toISOString().slice(0,10),facts=data.facts?.['us-gaap']||{},cik=String(Number(data.cik)),byMetric={},latestInFiling=new Map(),years=new Map();
+ const valid=f=>forms(f)&&Number.isFinite(f.val)&&f.filed<=today&&f.end<=today&&/^\d{10}-\d{2}-\d{6}$/.test(f.accn||'');
+ for(const metric of Object.values(financialMetrics))for(const tag of metric.tags){const unit=metric.unit||'USD';for(const f of facts[tag]?.units?.[unit]||[]){if(valid(f)&&fiscalForm(f)&&(!latestInFiling.has(f.accn)||f.end>latestInFiling.get(f.accn).end))latestInFiling.set(f.accn,f);}}
+ for(const f of latestInFiling.values())if(!years.has(f.end)||f.filed<years.get(f.end).filed)years.set(f.end,{fy:f.fy,filed:f.filed});
+ const point=(f,tag,unit)=>({value:f.val,start:f.start,end:f.end,unit,tag,filedAt:f.filed,accession:f.accn,form:f.form,url:`https://www.sec.gov/Archives/edgar/data/${cik}/${f.accn.replaceAll('-','')}/${f.accn}-index.html`,source:'SEC Company Facts',fy:years.get(f.end)?.fy??null});
+ for(const [key,metric] of Object.entries(financialMetrics)){
+  const records=new Map(),durationPoints=[],unit=metric.unit||'USD';
+  for(const tag of metric.tags){for(const f of facts[tag]?.units?.[unit]||[]){if(!valid(f))continue;if(days(f)>=70&&days(f)<=380)durationPoints.push({...point(f,tag,unit),basis:'consolidated'});const annual=fiscalForm(f),quarter=days(f)>=70&&days(f)<=110;if(!annual&&!quarter)continue;
+   const id=(annual?'annual':'quarter')+':'+f.end,old=records.get(id),next={...point(f,tag,unit),interval:annual?'annual':'quarter',fy:annual?years.get(f.end)?.fy??null:f.fy,quarter:annual?null:(f.fp==='Q1'&&days(f)<110?'Q1':f.frame?.match(/Q([1-4])$/)?.[1]?null:null)};
+   if(!old||f.filed>old.filedAt||f.filed===old.filedAt&&f.accn>old.accession)records.set(id,next);
+  }}byMetric[key]=[...records.values()].filter(p=>p.interval==='annual').concat(standaloneQuarters(durationPoints,{additive:key!=='eps'}).map(p=>({...p,interval:'quarter'})));
+ }
+ // FCF only combines facts from the same filing, accounting period, currency and taxonomy.
+ byMetric.freeCashFlow=byMetric.operatingCashFlow.flatMap(cf=>{const cap=byMetric.capex.find(c=>c.interval===cf.interval&&c.start===cf.start&&c.end===cf.end&&c.unit===cf.unit&&c.accession===cf.accession);return cap?[{...cf,value:cf.value-cap.value,tag:'calculated:OCF-capex',formula:'영업현금흐름 − 유형자산 취득 현금지출',inputs:[{tag:cf.tag,value:cf.value},{tag:cap.tag,value:cap.value}]}]:[];});
+ const annualEnds=[...new Set(Object.values(byMetric).flat().filter(p=>p.interval==='annual'&&p.fy).map(p=>p.end))].sort(),quarterEnds=[...new Set(Object.values(byMetric).flat().filter(p=>p.interval==='quarter').map(p=>p.end))].sort();
+ const make=(interval,ends)=>ends.map(end=>{const values={};for(const [key,all] of Object.entries(byMetric)){const p=all.find(p=>p.interval===interval&&p.end===end);if(!p)continue;const prev=all.filter(a=>a.interval===interval&&a.end<end).sort((a,b)=>b.end.localeCompare(a.end)).find(a=>Math.abs((Date.parse(p.end)-Date.parse(a.end))/86400000-365)<25);values[key]={...p,yoy:financialYoY(p,prev)};}return {end,fy:interval==='annual'?years.get(end)?.fy:null,label:interval==='annual'?'FY '+years.get(end)?.fy:end+' 종료 분기',values};});
+ const annual=make('annual',annualEnds),quarterly=make('quarter',quarterEnds),latest=annual.at(-1),ratios=[],balanceSheet={};
+ if(latest?.values.revenue?.value>0&&latest.values.operatingIncome?.accession===latest.values.revenue.accession)ratios.push({label:'영업이익률',value:latest.values.operatingIncome.value/latest.values.revenue.value*100,unit:'%',basis:latest.label,formula:'영업이익 ÷ 매출액 × 100',sourceUrl:latest.values.revenue.url});
+ const instant=(tag,end)=>{const points=(facts[tag]?.units?.USD||[]).filter(f=>valid(f)&&!f.start&&f.end===end).sort((a,b)=>b.filed.localeCompare(a.filed));return points[0]?point(points[0],tag,'USD'):null;};
+ if(latest){const equity=instant('StockholdersEquity',latest.end),liabilities=instant('Liabilities',latest.end);if(equity?.value>0&&liabilities?.accession===equity.accession)ratios.push({label:'총부채 / 자본',value:liabilities.value/equity.value*100,unit:'%',basis:latest.label,formula:'공시 총부채 ÷ 자본 × 100',sourceUrl:equity.url});const previous=annual.at(-2),oldEquity=previous?instant('StockholdersEquity',previous.end):null,net=latest.values.netIncome;if(equity?.value>0&&oldEquity?.value>0&&net&&net.accession===equity.accession)ratios.push({label:'ROE',value:net.value/((equity.value+oldEquity.value)/2)*100,unit:'%',basis:latest.label,formula:'연간 순이익 ÷ 기초·기말 평균 자본 × 100',sourceUrl:net.url});}
+ if(latest)balanceSheet.equity=instant('StockholdersEquity',latest.end);
+ return {status:annual.length?'ready':'empty',annual,quarterly,ratios,balanceSheet,currency:'USD',cik,source:'SEC EDGAR · US GAAP',fiscalYearEnd:submissions.fiscalYearEnd,latestFiledAt:[...Object.values(byMetric).flat()].map(p=>p.filedAt).sort().at(-1)||null,limitations:['연결 표준 US GAAP 항목 · 공시 전체 기업 기준','동일 회계연도 누적액 차감으로 산출한 분기는 원본 두 공시를 보존 · EPS는 차감하지 않음','사업 부문별 매출과 동일 산업 비교는 검증된 자료 없음']};
+}

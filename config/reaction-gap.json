@@ -1,0 +1,15 @@
+{
+  "inputVersion": "reaction-gap-input-1",
+  "calculationVersion": "reaction-gap-calc-2",
+  "eventSessions": 5,
+  "fixedIntervals": 20,
+  "preSessions": 20,
+  "maxCandidates": 100,
+  "maxRows": 10000,
+  "maxRevisionParents": 64,
+  "rounding": "HALF_AWAY_FROM_ZERO",
+  "repeatingDecimalPlaces": 18,
+  "returnDisplayPlaces": 1,
+  "ratioDisplayPlaces": 2,
+  "amountDisplayPlaces": 2
+}

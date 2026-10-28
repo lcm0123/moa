@@ -1,0 +1,14 @@
+{
+  "version": "catalyst-2026-10-03-v3",
+  "minChangePct": 2,
+  "minMarketCap": 1000000000,
+  "minDollarVolume": 10000000,
+  "minRelativeVolume": 1,
+  "excludeEtf": true,
+  "minSamples": 10,
+  "weights": {"cause": 25, "application": 25, "importance": 15, "specificity": 15, "history": 10, "priced": 10},
+  "topics": [
+    {"id":"memory-test","name":"고속 메모리 검사 공정","eventTerms":["memory test", "DRAM test", "메모리 검사"],"demandTerms":["demand", "growth", "수요", "증가"],"krProduct":"Memory.{0,12}Test Handler|메모리.{0,15}(검사장비|테스트 핸들러)|메모리.{0,10}테스터", "ownership":"당사.{0,100}(주력 제품|개발|제조|공급)|주력 제품.{0,100}당사", "path":"production_process", "queries":["memory test handler Korea listed company","메모리 검사 장비 상장사"],"explanation":"고속 메모리 검사 수요가 확대되는 경우, 같은 검사 공정에 쓰이는 장비 사업과 연결됩니다. 특정 고객·공급 계약은 미확인입니다."},
+    {"id":"hbm-demand","name":"HBM 메모리 수요","eventTerms":["HBM demand","high bandwidth memory demand","HBM 수요"],"demandTerms":["increase","growth","증가","확대"],"krProduct":"HBM|고대역폭 메모리", "ownership":"당사.{0,100}(생산|제조|판매)|주요 제품.{0,100}HBM", "path":"same_product", "queries":["HBM memory Korean listed manufacturer","HBM 생산 국내 상장사"],"explanation":"공시에서 확인된 HBM 제품 사업이 같은 제품 수요에 노출됩니다. 고객별 점유율 효과는 별도 확인이 필요합니다."}
+  ]
+}

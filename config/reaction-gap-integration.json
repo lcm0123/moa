@@ -1,0 +1,17 @@
+{
+  "version": "reaction-gap-integration-1",
+  "enabledByDefault": false,
+  "maxCandidates": 20,
+  "maxRowsPerAsset": 300,
+  "maxPending": 20,
+  "maxActive": 1,
+  "timeoutMs": 30000,
+  "leaseMs": 60000,
+  "workerHeapMB": 128,
+  "pollMs": 10000,
+  "historyLimit": 20,
+  "lookbackCalendarDays": 180,
+  "calendarId": "XKRX",
+  "stockContractId": "FSC_STOCKS",
+  "indexContractId": "FSC_INDICES"
+}

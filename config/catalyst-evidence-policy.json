@@ -1,0 +1,189 @@
+{
+  "version": "evidence-tier-1",
+  "publishers": [
+    {
+      "domain": "reuters.com",
+      "tier": 2,
+      "type": "NEWS",
+      "family": "reuters.com",
+      "policyBasis": "CURATED_PUBLISHER_REGISTRY"
+    },
+    {
+      "domain": "apnews.com",
+      "tier": 2,
+      "type": "NEWS",
+      "family": "apnews.com",
+      "policyBasis": "CURATED_PUBLISHER_REGISTRY"
+    },
+    {
+      "domain": "bloomberg.com",
+      "tier": 2,
+      "type": "NEWS",
+      "family": "bloomberg.com",
+      "policyBasis": "CURATED_PUBLISHER_REGISTRY"
+    },
+    {
+      "domain": "ft.com",
+      "tier": 2,
+      "type": "NEWS",
+      "family": "ft.com",
+      "policyBasis": "CURATED_PUBLISHER_REGISTRY"
+    },
+    {
+      "domain": "wsj.com",
+      "tier": 2,
+      "type": "NEWS",
+      "family": "wsj.com",
+      "policyBasis": "CURATED_PUBLISHER_REGISTRY"
+    },
+    {
+      "domain": "yonhapnews.co.kr",
+      "tier": 2,
+      "type": "NEWS",
+      "family": "yonhap",
+      "policyBasis": "CURATED_PUBLISHER_REGISTRY"
+    },
+    {
+      "domain": "yna.co.kr",
+      "tier": 2,
+      "type": "NEWS",
+      "family": "yonhap",
+      "policyBasis": "CURATED_PUBLISHER_REGISTRY"
+    },
+    {
+      "domain": "etnews.com",
+      "tier": 2,
+      "type": "PROFESSIONAL_TECH_MEDIA",
+      "family": "etnews.com",
+      "policyBasis": "CURATED_PUBLISHER_REGISTRY"
+    },
+    {
+      "domain": "thelec.kr",
+      "tier": 2,
+      "type": "PROFESSIONAL_TECH_MEDIA",
+      "family": "thelec.kr",
+      "policyBasis": "CURATED_PUBLISHER_REGISTRY"
+    },
+    {
+      "domain": "hankyung.com",
+      "tier": 2,
+      "type": "NEWS",
+      "family": "hankyung.com",
+      "policyBasis": "CURATED_PUBLISHER_REGISTRY"
+    },
+    {
+      "domain": "mk.co.kr",
+      "tier": 2,
+      "type": "NEWS",
+      "family": "mk.co.kr",
+      "policyBasis": "CURATED_PUBLISHER_REGISTRY"
+    },
+    {
+      "domain": "digitimes.com",
+      "tier": 2,
+      "type": "PROFESSIONAL_TECH_MEDIA",
+      "family": "digitimes.com",
+      "policyBasis": "CURATED_PUBLISHER_REGISTRY"
+    },
+    {
+      "domain": "sedaily.com",
+      "tier": 2,
+      "type": "NEWS",
+      "family": "sedaily.com",
+      "policyBasis": "CURATED_PUBLISHER_REGISTRY"
+    },
+    {
+      "domain": "theinvestor.co.kr",
+      "tier": 2,
+      "type": "NEWS",
+      "family": "herald-media",
+      "policyBasis": "CURATED_PUBLISHER_REGISTRY"
+    },
+    {
+      "domain": "koreaherald.com",
+      "tier": 2,
+      "type": "NEWS",
+      "family": "herald-media",
+      "policyBasis": "CURATED_PUBLISHER_REGISTRY"
+    },
+    {
+      "domain": "ieee.org",
+      "tier": 2,
+      "type": "ACADEMIC",
+      "family": "ieee.org",
+      "policyBasis": "CURATED_PUBLISHER_REGISTRY"
+    },
+    {
+      "domain": "nature.com",
+      "tier": 2,
+      "type": "ACADEMIC",
+      "family": "nature.com",
+      "policyBasis": "CURATED_PUBLISHER_REGISTRY"
+    },
+    {
+      "domain": "science.org",
+      "tier": 2,
+      "type": "ACADEMIC",
+      "family": "science.org",
+      "policyBasis": "CURATED_PUBLISHER_REGISTRY"
+    },
+    {
+      "domain": "patentscope.wipo.int",
+      "tier": 2,
+      "type": "PATENT_PRIMARY",
+      "family": "patentscope.wipo.int",
+      "policyBasis": "CURATED_PUBLISHER_REGISTRY"
+    },
+    {
+      "domain": "reddit.com",
+      "tier": 4,
+      "type": "COMMUNITY",
+      "family": "reddit.com",
+      "policyBasis": "CURATED_PUBLISHER_REGISTRY"
+    },
+    {
+      "domain": "x.com",
+      "tier": 4,
+      "type": "COMMUNITY",
+      "family": "x.com",
+      "policyBasis": "CURATED_PUBLISHER_REGISTRY"
+    },
+    {
+      "domain": "t.me",
+      "tier": 4,
+      "type": "COMMUNITY",
+      "family": "t.me",
+      "policyBasis": "CURATED_PUBLISHER_REGISTRY"
+    },
+    {
+      "domain": "stocktwits.com",
+      "tier": 4,
+      "type": "COMMUNITY",
+      "family": "stocktwits.com",
+      "policyBasis": "CURATED_PUBLISHER_REGISTRY"
+    },
+    {
+      "domain": "mouser.com",
+      "tier": 3,
+      "type": "DISTRIBUTOR_TECHNICAL",
+      "family": "mouser.com",
+      "policyBasis": "CURATED_PUBLISHER_REGISTRY"
+    },
+    {
+      "domain": "digikey.com",
+      "tier": 3,
+      "type": "DISTRIBUTOR_TECHNICAL",
+      "family": "digikey.com",
+      "policyBasis": "CURATED_PUBLISHER_REGISTRY"
+    }
+  ],
+  "minimumIndependentSources": 2,
+  "eventMinimumTier2": 2,
+  "maxCorroborationSources": 10,
+  "tierDefinitions": {
+    "1": "PRIMARY_DIRECT",
+    "2": "REPUTABLE_SECONDARY",
+    "3": "IDENTIFIED_RESEARCH_PARTNER_DISTRIBUTOR",
+    "4": "WEAK_OR_ANONYMOUS"
+  }
+}

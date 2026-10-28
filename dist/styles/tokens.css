@@ -1,0 +1,25 @@
+/* MOA palette: all shared chrome and home controls use these semantic colors.
+   Teal = actions/selection; red/blue = price direction; amber = stale/caution.
+   Chart/sector colors below encode data and are intentionally kept separate. */
+:root {
+  /* Surfaces and readable text, including labels on selected rows. */
+  --bg: #F5F7FA; --surface: #FFFFFF; --surface-subtle: #F3F5F7; --surface-hover: #F8FBFA;
+  --text: #1F2428; --secondary: #59697B; --muted: #5F6E80;
+  --line: #E5EAF0; --line-soft: #F0F3F6; --scrollbar: #CFD7DF;
+  --brand: #087F73; --brand-dark: #05665C; --brand-ink: var(--brand-dark); --brand-soft: #E9F5F2; --brand-hover-tint: #087F7306;
+  --on-brand: #FFFFFF; --surface-inverse: #193D37; --backdrop: #18272966; --selection-halo: #FFFFFFB3;
+  --warning: #946A22; --warning-soft: #FFF8E8;
+  /* Text variants improve small-number contrast without changing chart scales. */
+  --up: #D84B52; --up-text: #C13D45; --up-soft: #FFF0F0;
+  --down: #3479D4; --down-text: #2465B6; --down-soft: #EDF4FE;
+  --radius: 14px; --gap: 20px; --padding: 24px; --header: 64px; --rail: 76px; --panel: 340px; --content: 1600px;
+  --shadow: 0 4px 20px #1F242804; --shadow-popover: 0 12px 44px #2036331A; --shadow-control: 0 1px 4px #0000000C; --shadow-tooltip: 0 10px 35px #182E3826;
+  --font: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Malgun Gothic', sans-serif;
+  --font-caption:12px; --font-body:14px; --font-title:18px;
+  --control-height:36px; --control-radius:8px; --focus-ring:2px solid var(--brand);
+  --sma-5:#b56c15; --sma-20:#7a5ac2; --sma-60:#1598a5; --sma-120:#a95486;
+  --bollinger:#75889e; --macd:#087f73; --macd-signal:#b56c15; --rsi:#7a5ac2; --histogram:#738497;
+}
+
+/* Categorical sector marks: these colors identify sectors, not price direction. */
+:root{--sector-technology:#7164bf;--sector-communication:#477caf;--sector-financial:#ae8733;--sector-cyclical:#bb6689;--sector-healthcare:#449879;--sector-industrials:#647d99;--sector-defensive:#5f8e40;--sector-energy:#c47b38;--sector-utilities:#308e9e;--sector-realestate:#917c54;--sector-materials:#a36b54}

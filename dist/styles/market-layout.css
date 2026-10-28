@@ -1,0 +1,61 @@
+/* One full-width row per instrument group, followed by the saved watchlist. */
+.market-panel #market-indices-view>.panel-heading{height:64px}
+.market-panel #market-indices-view .title-group h2{font-size:18px}
+.market-panel .market-index-grid.us-indices{display:flex;flex-direction:column;padding:0 24px 18px;gap:0}
+.market-panel .cash-group{border:0;padding:0;margin:0}
+.market-panel .futures-group{border-top:1px solid var(--line);padding:18px 0 0;margin-top:18px}
+.market-panel .cash-index-cards,.market-panel .futures-index-cards{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:0}
+.market-panel .us-indices .indicator-card{display:block;padding:0 24px;border:0;border-right:1px solid var(--line)}
+.market-panel .us-indices .indicator-card:first-child{padding-left:0}
+.market-panel .us-indices .indicator-card:last-child{padding-right:0;padding-bottom:0;border-right:0}
+.market-panel .cash-index-cards .indicator-name h3{font-size:16px}
+.market-panel .cash-index-cards .indicator-value{font-size:28px}
+.market-panel .cash-index-cards .indicator-chart.index-daily-chart{height:92px;margin:8px 0}
+.market-panel .cash-index-cards .indicator-chart .sparkline{height:74px}
+.market-panel .futures-text-card .indicator-name{margin-bottom:4px}
+.market-panel .futures-text-card .indicator-contract{height:auto;min-height:16px;margin:0 0 7px;white-space:normal}
+.market-panel .futures-text-card .indicator-value{font-size:24px;text-align:left}
+.market-panel .futures-text-card .indicator-change{margin:6px 0 8px;text-align:left;font-size:12px}
+.market-panel .futures-text-card .indicator-meta{padding:0;text-align:left;font-size:11px!important;line-height:1.5}
+.market-panel .futures-basis{border:0;margin:12px 0 0;padding:0}
+.market-panel #market-watchlist-view{border-top:1px solid var(--line)}
+.market-panel .watch-count{font-size:18px;color:var(--text);margin:0;font-weight:650}
+.market-panel .watch-toolbar{padding-top:18px}
+@media(max-width:768px){
+ .market-panel #market-indices-view>.panel-heading{height:auto;min-height:86px}
+ .market-panel .market-index-grid.us-indices{padding:0 16px 16px}
+ .market-panel .us-indices .indicator-card{padding:0 8px!important;border-bottom:0;border-right:1px solid var(--line)}
+ .market-panel .us-indices .indicator-card:first-child{padding-left:0!important}
+ .market-panel .us-indices .indicator-card:last-child{padding-right:0!important;border-right:0}
+ .market-panel .us-indices .indicator-name h3{font-size:12px;line-height:1.4}
+ .market-panel .us-indices .indicator-name{gap:0;min-height:18px}
+ .market-panel .us-indices .indicator-value{font-size:18px;letter-spacing:-.6px;white-space:nowrap}
+ .market-panel .cash-index-cards .indicator-contract{font-size:10px;line-height:1.4;min-height:28px}
+ .market-panel .us-indices .indicator-change{font-size:10px;line-height:1.5;overflow-wrap:anywhere}
+ .market-panel .indicator-previous{font-size:10px}
+ .market-panel .cash-index-cards .indicator-chart.index-daily-chart{height:70px}
+ .market-panel .cash-index-cards .indicator-chart .sparkline{height:50px}
+ .market-panel .index-chart-range{font-size:9px}
+ .market-panel .us-indices .indicator-meta{font-size:10px!important;overflow-wrap:anywhere;padding:0 0 20px;line-height:1.4}
+ .market-panel .futures-text-card .indicator-meta{padding:0}
+ .market-panel .futures-text-card .indicator-contract{font-size:10px;min-height:28px}
+ .market-panel .futures-group{margin-top:16px;padding-top:16px}
+ .market-panel .watch-count{font-size:16px}
+}
+@media(max-width:360px){.market-panel .us-indices .indicator-value{font-size:16px}.market-panel .us-indices .indicator-card{padding-inline:6px!important}}
+
+.market-panel .market-index-grid:not(.us-indices) .indicator-chart.index-daily-chart{height:80px;margin:8px 0}.market-panel .market-index-grid:not(.us-indices) .index-daily-chart .sparkline{height:60px}
+
+/* Domestic indices + daily FX/rates. Separate wrapping avoids clipping values. */
+.market-panel .market-index-grid.kr-indices{grid-template-columns:repeat(5,minmax(0,1fr));row-gap:24px}
+.kr-indices .indicator-card{display:block;padding:0 20px;border-right:1px solid var(--line)}
+.kr-indices .indicator-card:last-child{border-right:0}
+.kr-indices .indicator-contract{white-space:normal;height:auto;min-height:26px;line-height:1.4}
+.kr-indices .indicator-value{white-space:nowrap}
+.kr-indices .macro-card .indicator-value{font-size:22px;letter-spacing:-.6px}
+.kr-indices .macro-card .indicator-change{color:var(--secondary)}
+.kr-indices .indicator-meta{line-height:1.6;padding-bottom:22px;padding-right:0;overflow-wrap:anywhere}
+.market-chart-dialog.macro-chart .mc-line{stroke:var(--secondary)}
+@media(max-width:1400px){.market-panel .market-index-grid.kr-indices{grid-template-columns:repeat(3,minmax(0,1fr))}.kr-indices .indicator-card:nth-child(3n){border-right:0}}
+@media(max-width:850px){.market-panel .market-index-grid.kr-indices{grid-template-columns:repeat(2,minmax(0,1fr))}.kr-indices .indicator-card:nth-child(n){border-right:1px solid var(--line)}.kr-indices .indicator-card:nth-child(2n),.kr-indices .indicator-card:last-child{border-right:0}}
+@media(max-width:540px){.market-panel .market-index-grid.kr-indices{grid-template-columns:minmax(0,1fr);gap:16px}.kr-indices .indicator-card:nth-child(n){border:0;border-bottom:1px solid var(--line);padding:0 18px 10px}.kr-indices .indicator-card:last-child{border-bottom:0}.kr-indices .macro-card .indicator-value{font-size:26px}.kr-indices .indicator-contract{min-height:20px}.kr-indices .indicator-meta{font-size:11px}.kr-indices .indicator-name>span{display:inline}.kr-indices .indicator-name h3{font-size:15px}}

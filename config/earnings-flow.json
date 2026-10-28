@@ -1,0 +1,15 @@
+{
+  "version": "earnings-2.1",
+  "minimumQuarters": 12,
+  "revenueAccelerationPp": 2,
+  "marginImprovementPp": 1,
+  "cashChangeToRevenuePp": 1,
+  "profitChangeToRevenuePp": 1,
+  "lowBaseRatio": 0.5,
+  "unusualMarginChangePp": 20,
+  "confirmationQuarters": 2,
+  "stalePeriodDays": 200,
+  "workerIntervalMs": 300000,
+  "displayQuarters": 12,
+  "minimumIndependentSignals": 2
+}

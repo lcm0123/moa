@@ -1,0 +1,6 @@
+CREATE TABLE IF NOT EXISTS sector_history_jobs (
+ id TEXT PRIMARY KEY,
+ payload TEXT NOT NULL DEFAULT '{}',
+ lease_until INTEGER NOT NULL DEFAULT 0,
+ next_attempt INTEGER NOT NULL DEFAULT 0
+);

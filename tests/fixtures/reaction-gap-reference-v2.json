@@ -1,0 +1,201 @@
+{
+  "purpose": "TEST_ONLY — 전부 가상 자료. 실제 기업·시장자료나 운영 응답이 아님.",
+  "scope": "독립 산술 기대값. 특정 저장소의 구현 또는 외부 데이터 연결을 시험한 결과가 아님.",
+  "numeric_encoding": "정밀도 보존용 십진 문자열. 금액은 명시한 단위로만 해석.",
+  "cases": [
+    {
+      "id": "PRICE_AND_BENCHMARK",
+      "currency": "KRW",
+      "input": {
+        "base_close": "10000",
+        "end_close": "10200",
+        "benchmark_base": "2000",
+        "benchmark_end": "2080"
+      },
+      "expected": {
+        "return_pct": "2",
+        "benchmark_return_pct": "4",
+        "difference_pp": "-2"
+      }
+    },
+    {
+      "id": "TURNOVER_FULL_ARRAYS",
+      "currency": "KRW",
+      "unit": "KRW",
+      "input": {
+        "pre_20": [
+          "8000000000",
+          "12000000000",
+          "8000000000",
+          "12000000000",
+          "8000000000",
+          "12000000000",
+          "8000000000",
+          "12000000000",
+          "8000000000",
+          "12000000000",
+          "8000000000",
+          "12000000000",
+          "8000000000",
+          "12000000000",
+          "8000000000",
+          "12000000000",
+          "8000000000",
+          "12000000000",
+          "8000000000",
+          "12000000000"
+        ],
+        "post_5": [
+          "9000000000",
+          "10000000000",
+          "11000000000",
+          "12000000000",
+          "13000000000"
+        ]
+      },
+      "expected": {
+        "pre_mean": "10000000000",
+        "post_mean": "11000000000",
+        "ratio": "1.1"
+      }
+    },
+    {
+      "id": "TWENTY_INTERVALS_REQUIRE_21_CLOSES",
+      "input": {
+        "synthetic_session_indices": [
+          -21,
+          -20,
+          -19,
+          -18,
+          -17,
+          -16,
+          -15,
+          -14,
+          -13,
+          -12,
+          -11,
+          -10,
+          -9,
+          -8,
+          -7,
+          -6,
+          -5,
+          -4,
+          -3,
+          -2,
+          -1
+        ],
+        "closes": [
+          "8000",
+          "8100",
+          "8200",
+          "8300",
+          "8400",
+          "8500",
+          "8600",
+          "8700",
+          "8800",
+          "8900",
+          "9000",
+          "9100",
+          "9200",
+          "9300",
+          "9400",
+          "9500",
+          "9600",
+          "9700",
+          "9800",
+          "9900",
+          "10000"
+        ]
+      },
+      "expected": {
+        "intervals": 20,
+        "observations": 21,
+        "pre_return_pct": "25"
+      }
+    },
+    {
+      "id": "DO_NOT_ESTIMATE_TURNOVER_FROM_CLOSE",
+      "currency": "KRW",
+      "input": {
+        "trades": [
+          {
+            "price": "1000",
+            "shares": "100"
+          },
+          {
+            "price": "2000",
+            "shares": "100"
+          }
+        ],
+        "close": "2000",
+        "total_volume": "200"
+      },
+      "expected": {
+        "actual_turnover": "300000",
+        "close_times_volume": "400000",
+        "close_times_volume_is_acceptable": false
+      }
+    },
+    {
+      "id": "COMMON_BENCHMARK_NOT_SECOND_GAP_SIGNAL",
+      "input": {
+        "return_a_pct": "18",
+        "return_b_pct": "2",
+        "common_benchmark_pct": "4"
+      },
+      "expected": {
+        "excess_a_pp": "14",
+        "excess_b_pp": "-2",
+        "raw_gap_pp": "16",
+        "excess_gap_pp": "16"
+      }
+    },
+    {
+      "id": "SPLIT_ONLY_NO_ECONOMIC_PRICE_MOVE",
+      "currency": "KRW",
+      "input": {
+        "raw_base": "10000",
+        "raw_end": "5000",
+        "split_new_per_old": "2",
+        "verified_comparable_base": "5000",
+        "verified_comparable_end": "5000"
+      },
+      "expected": {
+        "comparable_price_return_pct": "0",
+        "unadjusted_minus_50_is_not_comparable": true,
+        "do_not_apply_split_factor_to_actual_turnover": true
+      }
+    },
+    {
+      "id": "TURNOVER_ABSENT_PRICE_STILL_USABLE",
+      "input": {
+        "base_close": "10000",
+        "end_close": "10200",
+        "actual_turnover": null
+      },
+      "expected": {
+        "return_pct": "2",
+        "turnover_ratio": null,
+        "turnover_reason": "MISSING_ACTUAL_TURNOVER"
+      }
+    },
+    {
+      "id": "LOW_BASE_RATIO_IS_NOT_ABSOLUTE_ACTIVITY",
+      "currency": "KRW",
+      "input": {
+        "a_pre_mean": "100000000",
+        "a_post_mean": "1000000000",
+        "b_pre_mean": "10000000000",
+        "b_post_mean": "20000000000"
+      },
+      "expected": {
+        "a_ratio": "10",
+        "b_ratio": "2",
+        "a_post_less_than_b_post": true,
+        "do_not_infer_a_has_larger_absolute_turnover": true
+      }
+    }
+  ]
+}

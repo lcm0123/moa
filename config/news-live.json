@@ -1,0 +1,9 @@
+{
+  "pollMs": 60000,
+  "pageRefreshMs": 30000,
+  "maxPending": 48,
+  "maxEnqueuePerTick": 6,
+  "maxAgeMs": 21600000,
+  "minimumFreeMemoryMB": 256,
+  "topics": ["기업", "반도체", "전력망", "바이오", "자동차", "금융", "에너지", "소비"]
+}

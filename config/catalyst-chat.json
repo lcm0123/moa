@@ -1,0 +1,18 @@
+{
+  "version": "free-research-1",
+  "contextVersion": "saved-company-1",
+  "enabled": true,
+  "maxQuestionCharacters": 900,
+  "maxTurns": 12,
+  "maxRequestsPerHour": 12,
+  "contextTurns": 4,
+  "maxModelCalls": 5,
+  "maxToolCalls": 10,
+  "maxSearches": 3,
+  "maxDocumentReads": 3,
+  "maxSources": 18,
+  "maxEvidenceCharacters": 9000,
+  "timeoutMs": 240000,
+  "answerCacheMs": 900000,
+  "answerReserveTokens": 3000
+}

@@ -1,0 +1,8 @@
+// Development fixture only. The API serves this only in the local preview with ?demo=1.
+export function demoCrypto(){
+ const at='2026-01-15T03:00:00.000Z',categories=[{id:'demo-layer1',name:'Layer 1',label:'레이어 1',numTokens:6},{id:'demo-defi',name:'DeFi',label:'탈중앙 금융',numTokens:4},{id:'demo-ai',name:'AI & Big Data',label:'AI·빅데이터',numTokens:3}];
+ const values=[['BTC','Bitcoin',92000,2.2,1800,0],['ETH','Ethereum',3200,1.8,390,0],['SOL','Solana',145,-1.4,70,0],['UNI','Uniswap',8.2,3.4,5,1],['AAVE','Aave',210,4.1,3,1],['TAO','Bittensor',430,-2.8,3.5,2],['RENDER','Render',5.4,1.2,2.8,2],['DEMO','분류 확인 예시',1.25,null,null,-1]];
+ const items=values.map(([symbol,name,price,ret,cap,cat])=>({id:'finviz:@'+symbol,ticker:'@'+symbol,symbol,name,price,currency:'USD',returns:{day:ret,week:ret===null?null:ret*2,month:ret===null?null:ret*3},receivedAt:at,asOf:null,categories:cat<0?[]:[categories[cat]],primary:cat<0?{id:'unclassified',label:'미분류'}:categories[cat],marketCap:cap?cap*1e9:null,capAsOf:at,capReceivedAt:at,capStale:false,cmcId:cat<0?null:10000+values.findIndex(v=>v[0]===symbol),mappingReason:'개발용 샘플 연결'}));
+ return {status:'ready',demo:true,items,categories,receivedAt:at,mode:'sample',source:'샘플 데이터 · 실제 시세 아님',history:{first:'2026-01-01',last:'2026-01-15',basis:'샘플'},metadata:{receivedAt:at,scope:'개발용 샘플'},intervalSeconds:300};
+}
+export function demoChart(id){const base=demoCrypto().items.find(c=>c.id===id)?.price||100;return {demo:true,points:Array.from({length:15},(_,i)=>({at:new Date(Date.UTC(2026,0,i+1,3)).toISOString(),price:base*(1+(i-14)*.013+(Math.sin(i)-Math.sin(14))*.02)})),source:'샘플 데이터 · 실제 시세 아님',currency:'USD',message:'차트 UI 검토용 가상 가격',receivedAt:'2026-01-15T03:00:00Z'};}

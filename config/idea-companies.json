@@ -1,0 +1,123 @@
+{
+  "version": "idea-companies-1.5",
+  "genericProductTerms": ["부품", "제품", "상품", "기기", "모듈", "솔루션", "서비스", "사업", "부문", "기타", "components", "component", "parts", "part", "products", "product", "modules", "module", "solutions", "solution", "services", "service"],
+  "minInputCharacters": 5,
+  "maxInputCharacters": 4000,
+  "maxProducts": 6,
+  "maxInterpretationProducts": 4,
+  "maxDiscoveryTerms": 3,
+  "serviceBusinessSuffixes": ["서비스", "운송", "택배", "물류", "임대", "렌탈", "보험", "중개", "컨설팅", "호스팅"],
+  "englishServiceSuffixes": ["services", "service", "transportation", "hosting", "rental", "logistics", "insurance", "consulting"],
+  "maxCandidates": 8,
+  "defaultMarkets": [
+    "KR"
+  ],
+  "maxEvidenceAgeDays": {
+    "regulatory": 550,
+    "official": 550,
+    "business": 550,
+    "news": 7
+  },
+  "currentSupplyAgeDays": 180,
+  "mainBusinessShare": 30,
+  "cacheTtlMs": 3600000,
+  "ordering": [
+    "required",
+    "evidence",
+    "relationship",
+    "commercialStage",
+    "comparableExposure",
+    "preferences",
+    "assetId"
+  ],
+  "evidenceOrder": {
+    "SUPPORTED": 0,
+    "INSUFFICIENT": 1,
+    "CONFLICT": 2,
+    "REFUTED": 3
+  },
+  "relationshipOrder": {
+    "DIRECT_PRODUCT": 0,
+    "INDIRECT_PRODUCT": 1,
+    "HYPOTHETICAL": 2
+  },
+  "stageOrder": {
+    "SUPPLY": 0,
+    "PRODUCT_SALES": 1,
+    "SERVICE_OPERATION": 2,
+    "PRODUCT_CAPABILITY": 3,
+    "PLAN": 4
+  },
+  "additionalAliases": [
+    [
+      "FC-BGA",
+      "FC BGA",
+      "플립칩 볼그리드어레이"
+    ],
+    [
+      "자동광학검사",
+      "AOI",
+      "automated optical inspection"
+    ],
+    [
+      "습식공정장비",
+      "wet process equipment"
+    ],
+    [
+      "열압착본더",
+      "TC bonder",
+      "thermocompression bonder"
+    ],
+    [
+      "동박",
+      "copper foil"
+    ],
+    [
+      "전해액",
+      "electrolyte"
+    ],
+    [
+      "양극재",
+      "cathode material"
+    ],
+    [
+      "음극재",
+      "anode material"
+    ],
+    [
+      "분리막",
+      "battery separator"
+    ]
+  ],
+  "discoveryPaths": [
+    {
+      "terms": [
+        "전력망 투자",
+        "전력망 증설",
+        "전력망 교체",
+        "grid investment",
+        "grid expansion"
+      ],
+      "products": [
+        "변압기",
+        "배전반",
+        "차단기"
+      ],
+      "assumption": "전력망 투자에 변압기·배전반·차단기 구매가 포함된다는 탐색 가정입니다. 실제 규격·발주·공급사 선정은 확인되지 않았습니다."
+    }
+  ],
+  "maxIndexRows": 160,
+  "maxPending": 24,
+  "maxRunsPerHour": 30,
+  "maxCounterSources": 12,
+  "timeoutMs": 120000,
+  "maxSearches": 2,
+  "maxDocuments": 4,
+  "maxExternalCandidates": 3,
+  "externalNegativeCacheMs": 900000,
+  "maxModelCalls": 1,
+  "externalTimeoutMs": 20000,
+  "externalMaxRetries": 1,
+  "externalRetryBaseMs": 500,
+  "externalCircuitMs": 60000
+}

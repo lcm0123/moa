@@ -1,0 +1,8 @@
+{
+  "version": "news-financial-1",
+  "maxHorizonYears": 8,
+  "maxFactsPerCompany": 4,
+  "shareTolerancePp": 0.02,
+  "maxEvidenceAgeDays": 550,
+  "scenarioKinds": ["conservative", "base", "expansion", "delay", "cancellation"]
+}

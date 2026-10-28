@@ -1,0 +1,61 @@
+/* Approved home A: market → agenda → ranking/preview → sectors → watchlist. */
+#dashboard>.page-heading{margin-bottom:22px}
+#dashboard>.market-panel{background:transparent;border:0;overflow:visible;margin-bottom:0}
+#dashboard>.today-agenda{height:auto;margin:18px 0 22px}
+#dashboard .agenda-card{height:auto;display:flex;align-items:center;gap:16px;padding:0 18px;border:1px solid var(--line);border-radius:var(--radius);background:var(--surface);min-height:66px}
+#dashboard .agenda-trigger{height:auto;min-height:64px;flex:1;flex-direction:row;justify-content:flex-start;align-items:center;padding:12px 0;border:0;box-shadow:none;gap:24px;background:transparent}
+#dashboard .agenda-first{flex:none;padding-right:0}
+#dashboard .agenda-highlights{min-width:0;color:var(--secondary);font-size:13px}
+#dashboard .agenda-earnings-link{position:static;flex:none;border:0;padding:10px 0;color:var(--brand-ink)}
+#dashboard .ranking-panel .panel-heading,#dashboard .stock-preview-panel .panel-heading,#dashboard .sector-ranking-panel .panel-heading{height:auto;min-height:64px;padding:16px 20px;gap:12px}
+#dashboard .ranking-toolbar{padding:0 20px;gap:8px;flex-wrap:wrap}
+#dashboard .ranking-toolbar .tabs{gap:18px}
+#dashboard .ranking-toolbar .tab{height:44px;font-size:13px}
+#dashboard .ranking-toolbar .segmented button{padding:6px 11px}
+#dashboard .rank-description{padding:12px 20px;line-height:1.65}
+#dashboard .ranking-table th{padding:12px 10px}
+#dashboard .ranking-table td{padding:13px 10px}
+#dashboard .ranking-table th:first-child,#dashboard .ranking-table td:first-child{padding-left:16px}
+#dashboard .ranking-table th:last-child,#dashboard .ranking-table td:last-child{padding-right:16px}
+#dashboard .ranking-table .stock-avatar{display:none}
+#dashboard .ranking-table .rank-stock{gap:6px}
+#dashboard .ranking-table .stock-identity{gap:6px}
+#dashboard .ranking-table .stock-identity strong{font-size:13px}
+#dashboard .ranking-table .rank-preview-button{width:28px;min-width:28px;height:32px;border:0;background:transparent}
+#dashboard .ranking-table .rank-cell{width:48px;white-space:nowrap}
+#dashboard .ranking-table .numeric{font-size:13px}
+#dashboard .ranking-table .name-cell{min-width:0}
+#dashboard .ranking-table tr.preview-selected{background:var(--brand-soft)}
+#dashboard .dashboard-bottom>section{margin-bottom:0}
+#dashboard>.watchlist-surface{margin-top:22px}
+
+.dashboard-bottom{display:grid;grid-template-columns:minmax(0,54fr) minmax(0,46fr);grid-template-rows:560px 560px;gap:20px;height:auto;align-items:stretch}
+.dashboard-bottom>#ranking{grid-area:1/1}.dashboard-bottom>#stock-preview{grid-area:1/2}.dashboard-bottom>#sectors{grid-area:2/1}.dashboard-bottom>#sector-ranking{grid-area:2/2}
+.dashboard-bottom>:is(.ranking-panel,.stock-preview-panel,.sector-panel,.sector-ranking-panel){height:100%;min-width:0;min-height:0;display:flex;flex-direction:column;overflow:hidden}
+.dashboard-bottom .rank-scroll{height:auto;flex:1;min-height:0;overflow-y:auto;overscroll-behavior:contain;scrollbar-gutter:stable}
+.ranking-table tr[data-stock-key]{cursor:pointer;outline-offset:-2px}.ranking-table tr[data-stock-key]:focus-visible{outline:2px solid var(--brand)}
+.ranking-table tr.preview-selected{background:var(--brand-soft);box-shadow:inset 3px 0 var(--brand)}
+.ranking-table .stock-identity{pointer-events:auto}.ranking-table .stock-identity strong{max-width:100%;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.stock-preview-panel .panel-heading,.sector-ranking-panel .panel-heading{height:66px;flex-shrink:0;padding:0 22px}
+.stock-preview-panel .title-group,.sector-ranking-panel .title-group{gap:8px}.stock-preview-panel h2,.sector-ranking-panel h2{font-size:18px;white-space:nowrap}
+.preview-daily{font-size:11px;color:var(--secondary);background:var(--bg);padding:4px 6px;border-radius:5px}
+.preview-detail{display:flex;align-items:center;gap:3px;color:var(--brand-ink);font-size:12px;white-space:nowrap}.preview-detail .icon{width:15px}
+.preview-identity,.preview-quote,.preview-quote-time,.preview-periods,.preview-readout{padding:0 22px}
+.preview-identity{min-width:0}.preview-identity strong{display:block;font-size:17px;line-height:1.45;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.preview-identity small{display:block;font-size:12px;color:var(--secondary);margin:5px 0 0}
+.preview-quote{display:flex;align-items:baseline;gap:10px;margin-top:14px;flex-wrap:wrap;font-variant-numeric:tabular-nums}.preview-quote>b{font-size:27px;line-height:1.2}.preview-quote>span{font-size:14px;font-weight:600}
+.preview-quote-time{font-size:11px;color:var(--secondary);line-height:1.6;margin:8px 0 15px;min-height:18px;overflow-wrap:anywhere}
+.preview-periods{display:flex;gap:4px;flex-shrink:0}.preview-periods button{padding:6px 11px;min-height:32px;border-radius:6px;font-size:12px;color:var(--secondary)}.preview-periods button[aria-pressed=true]{background:var(--brand-soft);color:var(--brand-ink);font-weight:650}
+.preview-plot{flex:1;min-height:140px;position:relative;margin:13px 10px 0 12px}.preview-canvas{position:absolute;inset:0}.preview-state{position:absolute;inset:0;background:var(--bg);border-radius:8px;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:10px;padding:15px;color:var(--secondary);font-size:13px;text-align:center}.preview-state button{border:1px solid var(--line);padding:8px 14px;background:var(--surface);border-radius:6px;color:var(--brand-ink)}.preview-state span{font-size:12px}
+.preview-spinner{width:20px;height:20px;border:2px solid var(--line);border-top-color:var(--brand);border-radius:50%;animation:preview-spin .8s linear infinite}@keyframes preview-spin{to{transform:rotate(360deg)}}
+.preview-readout{font-size:11px;color:var(--secondary);line-height:1.6;padding-top:9px;padding-bottom:10px;min-height:34px;font-variant-numeric:tabular-nums}.stock-preview-panel .panel-foot{padding:10px 22px;min-height:52px;font-size:10px;line-height:1.6}
+.dashboard-bottom>#sectors .sector-scroll{overflow:visible;display:flex;flex-direction:column;min-height:0;flex:1;padding:12px 20px 0}.dashboard-bottom>#sectors .hierarchy-map{height:auto;min-height:0;flex:1;border-radius:8px}
+.dashboard-bottom>#sectors .map-sector-heading{font-size:12px}.dashboard-bottom>#sectors .map-industry-heading{font-size:11px}.dashboard-bottom>#sectors .map-meta{font-size:12px;margin-bottom:10px}.dashboard-bottom>#sectors .sector-toolbar{padding-left:24px;padding-right:24px}.dashboard-bottom>#sectors .map-index-controls{padding-left:24px}.dashboard-bottom>#sectors .map-legend{padding-top:13px;font-size:11px}
+.map-sector.rank-highlighted{outline:3px solid var(--brand);outline-offset:-3px;z-index:3;box-shadow:inset 0 0 0 5px var(--selection-halo)}.map-sector.rank-highlighted>.map-sector-heading{background:var(--brand);color:var(--on-brand)}
+.sector-ranking-controls{display:flex;align-items:center;justify-content:space-between;gap:8px;padding:0 22px}.sector-ranking-universe{font-size:12px;color:var(--brand-ink);font-weight:600}.sector-ranking-controls select{font:inherit;font-size:12px;color:var(--secondary);background:var(--bg);border:1px solid var(--line);border-radius:6px;padding:7px 8px}
+.sector-ranking-time{font-size:11px;color:var(--secondary);line-height:1.5;padding:0 22px;margin:10px 0 13px}.sector-ranking-list{list-style:none;min-height:0;flex:1;overflow:auto;margin:0;padding:0 14px;scrollbar-width:thin;overscroll-behavior:contain}.sector-ranking-list li+li{border-top:1px solid var(--line)}.sector-ranking-list button{display:grid;grid-template-columns:18px 22px minmax(0,1fr) auto;align-items:center;gap:9px;width:100%;min-height:45px;padding:8px;text-align:left;border-radius:7px}.sector-ranking-list button[aria-pressed=true]{background:var(--brand-soft);box-shadow:inset 3px 0 var(--brand)}.sector-ranking-list button:hover{background:var(--bg)}.sector-rank-number{font-size:11px;color:var(--muted)}.sector-rank-name{min-width:0}.sector-rank-name strong{display:block;font-size:13px;font-weight:600}.sector-rank-name small{display:block;font-size:10px;color:var(--secondary);margin-top:3px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.sector-ranking-list b{font-size:14px;font-variant-numeric:tabular-nums;white-space:nowrap}.sector-ranking-state{flex:1;display:grid;place-items:center;font-size:13px;color:var(--secondary);padding:22px;text-align:center}.sector-ranking-panel .panel-foot{font-size:11px;line-height:1.6;min-height:54px;margin-top:auto}
+@media(max-width:1440px) and (min-width:1101px){.preview-identity,.preview-quote,.preview-quote-time,.preview-periods,.preview-readout{padding-left:16px;padding-right:16px}.stock-preview-panel .panel-heading,.sector-ranking-panel .panel-heading{padding:0 16px}.stock-preview-panel h2,.sector-ranking-panel h2{font-size:16px}.preview-daily{display:none}.sector-ranking-controls,.sector-ranking-time{padding-left:16px;padding-right:16px}.sector-ranking-list{padding:0 8px}.sector-ranking-list button{gap:5px}.preview-quote>b{font-size:25px}}
+@media(max-width:1100px){.dashboard-bottom{grid-template-columns:minmax(0,1fr);grid-template-rows:500px 460px 520px auto}.dashboard-bottom>#ranking{grid-area:1/1}.dashboard-bottom>#stock-preview{grid-area:2/1}.dashboard-bottom>#sectors{grid-area:3/1}.dashboard-bottom>#sector-ranking{grid-area:4/1;min-height:300px}.sector-ranking-list{overflow:visible}.preview-plot{min-height:160px}.preview-identity strong{white-space:normal}}
+@media(max-width:768px){.dashboard-bottom{grid-template-rows:560px 460px 490px auto}.dashboard-bottom>#sectors .sector-scroll{padding:10px 12px 0}.dashboard-bottom>#sectors .sector-toolbar{padding-left:18px;padding-right:18px}.dashboard-bottom>#sectors .map-index-controls{padding-left:16px}.preview-identity,.preview-quote,.preview-quote-time,.preview-periods,.preview-readout{padding-left:18px;padding-right:18px}.stock-preview-panel .panel-heading,.sector-ranking-panel .panel-heading{padding:0 18px}.sector-ranking-list button{min-height:57px}.stock-preview-panel .panel-foot{padding:10px 18px}.ranking-table .rank-stock{gap:4px}.ranking-table .rank-watch-button{padding:3px;width:26px;min-width:26px}}
+@media(max-width:900px){#dashboard .agenda-trigger{align-items:flex-start;flex-direction:column;gap:6px}#dashboard .agenda-card{gap:12px}}
+@media(max-width:650px){#dashboard>.page-heading{margin-bottom:18px}#dashboard .agenda-card{padding:0 14px}#dashboard .agenda-first{font-size:13px}#dashboard .agenda-highlights{font-size:12px}#dashboard .ranking-panel .panel-heading,#dashboard .stock-preview-panel .panel-heading,#dashboard .sector-ranking-panel .panel-heading{padding:14px 16px}#dashboard .ranking-toolbar{padding:0 14px}#dashboard .rank-description{padding:10px 14px}#dashboard .ranking-table th,#dashboard .ranking-table td{padding-left:7px;padding-right:7px}#dashboard .ranking-table .rank-preview-button{min-width:32px;width:32px;height:40px}#dashboard .ranking-table .numeric{font-size:12px}#dashboard .ranking-table .stock-identity strong{font-size:13px}#dashboard .ranking-table .rank-cell{width:26px}#dashboard .ranking-table .rank-watch-button{min-width:30px;width:30px;min-height:40px}#dashboard .ranking-table .rank-stock{gap:3px}}
+@media(prefers-reduced-motion:reduce){.preview-spinner{animation:none}}

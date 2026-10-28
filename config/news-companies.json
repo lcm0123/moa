@@ -1,0 +1,17 @@
+{
+  "version": "news-companies-3",
+  "maxInputCharacters": 18000,
+  "maxSources": 10,
+  "maxSourceCharacters": 4500,
+  "maxCandidates": 5,
+  "maxSearches": 4,
+  "maxDocuments": 6,
+  "maxModelCalls": 3,
+  "maxOutputTokens": 5500,
+  "maxContextCharacters": 65000,
+  "timeoutMs": 360000,
+  "maxRunsPerHour": 6,
+  "refreshCooldownMs": 60000,
+  "staleMs": 86400000,
+  "coreBusinessShare": 30
+}

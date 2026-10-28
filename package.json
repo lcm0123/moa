@@ -1,0 +1,31 @@
+{
+  "name": "moa-market-graduation-source",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "node scripts/public-preview.mjs",
+    "start": "node scripts/public-preview.mjs",
+    "build": "node scripts/build.mjs",
+    "test": "node --test tests/*.test.mjs",
+    "test:smoke": "node scripts/public-smoke.mjs",
+    "db:generate": "drizzle-kit generate"
+  },
+  "devDependencies": {
+    "drizzle-kit": "^0.31.0",
+    "drizzle-orm": "^0.44.0",
+    "esbuild": "^0.25.0",
+    "eslint": "^10.12.0",
+    "typescript": "^7.0.2"
+  },
+  "dependencies": {
+    "lightweight-charts": "5.2.0",
+    "pdfjs-dist": "6.3.289",
+    "web-push": "^3.6.7"
+  },
+  "description": "MOA 졸업작품 코드 검토용 공개 소스",
+  "license": "UNLICENSED",
+  "engines": {
+    "node": ">=22.13.0"
+  }
+}

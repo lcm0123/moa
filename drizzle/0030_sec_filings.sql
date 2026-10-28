@@ -1,0 +1,12 @@
+CREATE TABLE IF NOT EXISTS sec_targets(ticker TEXT PRIMARY KEY,cik TEXT,name TEXT,priority INTEGER NOT NULL DEFAULT 10,next_sync INTEGER NOT NULL DEFAULT 0,synced_at TEXT,error TEXT,coverage TEXT);
+CREATE TABLE IF NOT EXISTS sec_filings(accession TEXT PRIMARY KEY,form TEXT NOT NULL,topic TEXT NOT NULL DEFAULT 'other',filed_date TEXT,accepted_at TEXT,report_date TEXT,primary_document TEXT,archive_cik TEXT,filer_cik TEXT,filer_name TEXT,title_ko TEXT NOT NULL,summary_ko TEXT,state TEXT NOT NULL DEFAULT 'collected',source_url TEXT NOT NULL,collected_at TEXT NOT NULL,updated_at TEXT NOT NULL,amended INTEGER NOT NULL DEFAULT 0,original_accession TEXT,source_hash TEXT,version TEXT,error TEXT);
+CREATE TABLE IF NOT EXISTS sec_filing_issuers(accession TEXT NOT NULL,cik TEXT NOT NULL,relation TEXT NOT NULL DEFAULT 'pending',evidence TEXT,PRIMARY KEY(accession,cik));
+CREATE INDEX IF NOT EXISTS sec_issuer_filings ON sec_filing_issuers(cik,accession);
+CREATE INDEX IF NOT EXISTS sec_filings_date ON sec_filings(filed_date DESC,accession);
+CREATE TABLE IF NOT EXISTS sec_documents(id TEXT PRIMARY KEY,accession TEXT NOT NULL,source_hash TEXT NOT NULL,version TEXT NOT NULL,filename TEXT NOT NULL,form TEXT,source_url TEXT NOT NULL,raw_path TEXT,section_count INTEGER NOT NULL DEFAULT 0,created_at TEXT NOT NULL,UNIQUE(accession,source_hash,version,filename));
+CREATE INDEX IF NOT EXISTS sec_documents_accession ON sec_documents(accession);
+CREATE TABLE IF NOT EXISTS sec_chunks(document_id TEXT NOT NULL,ordinal INTEGER NOT NULL,kind TEXT NOT NULL,anchor TEXT,english TEXT NOT NULL,korean TEXT,state TEXT NOT NULL DEFAULT 'pending',error TEXT,translation_version TEXT,PRIMARY KEY(document_id,ordinal));
+CREATE TABLE IF NOT EXISTS sec_facts(id TEXT PRIMARY KEY,accession TEXT NOT NULL,document_id TEXT NOT NULL,ordinal INTEGER NOT NULL,kind TEXT NOT NULL,korean TEXT NOT NULL,details TEXT NOT NULL,version TEXT NOT NULL);
+CREATE TABLE IF NOT EXISTS sec_jobs(job_key TEXT PRIMARY KEY,kind TEXT NOT NULL,payload TEXT NOT NULL,priority INTEGER NOT NULL,state TEXT NOT NULL DEFAULT 'queued',attempts INTEGER NOT NULL DEFAULT 0,available_at INTEGER NOT NULL DEFAULT 0,lease_until INTEGER NOT NULL DEFAULT 0,error TEXT,created_at TEXT NOT NULL,updated_at TEXT NOT NULL);
+CREATE INDEX IF NOT EXISTS sec_jobs_ready ON sec_jobs(state,available_at,priority);
+CREATE TABLE IF NOT EXISTS sec_runtime(key TEXT PRIMARY KEY,value TEXT NOT NULL);

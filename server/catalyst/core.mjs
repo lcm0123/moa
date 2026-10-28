@@ -1,0 +1,23 @@
+import defaults from '../../config/catalyst.json' with {type:'json'};
+export const config=defaults;
+export const intents=['FORWARD_IMPACT','MOVE_ANALYSIS','RELATED_ASSET_SEARCH','CROSS_ASSET_ANALYSIS'];
+export const kinds=['KR_STOCK','US_STOCK','CRYPTO'];
+export const statuses=['VERIFIED','SUPPORTED','INFERRED','UNVERIFIED','CONFLICTED','RUMOR'];
+export const relations=['USES','USES_PROCESS','REQUIRES_PROCESS','CAN_USE_PROCESS','USES_EQUIPMENT','REQUIRES_EQUIPMENT','CAN_USE_EQUIPMENT','USES_MATERIAL','CONSUMES_MATERIAL','DESIGNED_FOR','REQUIRED_FOR','INSPECTS','PROCESSES','GOVERNANCE_OF','CAUSES','INCREASES','DECREASES','REQUIRES','USED_IN','PRODUCES','SUPPLIES','SUPPLIES_TO','CUSTOMER_OF','SUPPLIER_OF','DEPENDS_ON','RUNS_ON','PART_OF','BENEFITS_FROM','HURT_BY','COMPETES_WITH','SUBSTITUTE_FOR','CORRELATED_WITH'];
+export const nodeKinds=['EVENT','CATALYST','MACRO_FACTOR','REGULATION','NARRATIVE','INDUSTRY','SUB_INDUSTRY','PROCESS','PRODUCT','MATERIAL','EQUIPMENT','SERVICE','PROTOCOL','BLOCKCHAIN','TOKEN','COMPANY','ASSET','CUSTOMER','END_MARKET'];
+export const norm=s=>String(s??'').normalize('NFKC').replace(/\s+/g,' ').trim();
+export const instant=s=>typeof s==='string'&&/T.*(?:Z|[+-]\d\d:\d\d)$/.test(s)&&Number.isFinite(Date.parse(s))?new Date(s).toISOString():null;
+export const dateOnly=s=>/^\d{4}-\d{2}-\d{2}$/.test(s||'')&&Number.isFinite(Date.parse(s))?s:null;
+export async function hash(s){return [...new Uint8Array(await crypto.subtle.digest('SHA-256',new TextEncoder().encode(s)))].map(b=>b.toString(16).padStart(2,'0')).join('');}
+export function safeUrl(s){try{const u=new URL(s);return u.protocol==='https:'&&!u.username&&!u.password&&!u.port&&![...u.searchParams.keys()].some(k=>/^(?:api.?key|auth|token|password|secret|signature|key)$/i.test(k))?u.href:null;}catch{return null;}}
+export function clean(s){return norm(String(s||'').replace(/<script\b[^>]*>[\s\S]*?<\/script>/gi,'').replace(/<style\b[^>]*>[\s\S]*?<\/style>/gi,'').replace(/<[^>]*>/g,' ').replace(/&amp;/g,'&').replace(/&quot;/g,'"').replace(/&#39;|&apos;/g,"'").replace(/&nbsp;/g,' '));}
+export function terms(q){const out=norm(q).toLowerCase().split(/[^\p{L}\p{N}-]+/u).filter(s=>s.length>1);for(const [a,b] of Object.entries(config.synonyms))if(norm(q).toLowerCase().includes(a.toLowerCase())||b.some(x=>out.includes(x.toLowerCase())))out.push(a.toLowerCase(),...b.map(x=>x.toLowerCase()));return [...new Set(out)].slice(0,24);}
+export function classifyQuery(q){
+ const text=norm(q),crypto=/코인|토큰|\b(?:crypto|token|BTC|ETH|SOL)\b|비트코인|이더리움|솔라나/i.test(text),kr=/한국|국내|코스피|코스닥|삼성|하이닉스/.test(text),us=/미국|미장|미국장|미주|nasdaq|nyse|엔비디아|애플|마이크론|NVIDIA|NVDA|Micron|\bMU\b/i.test(text);
+ const cross=/교차|cross.?asset|다른 시장|미국.*국내|국내.*미국|주식.*코인|코인.*주식/.test(text.toLowerCase())||(kr&&us)||(crypto&&(kr||us));
+ const related=/관련|연관|같은.*(재료|촉매|catalyst)|다른.*(자산|종목|코인)|related/i.test(text),move=/왜.*(오|올|내|상승|하락|급등|급락)|급등|급락|오른 이유|내린 이유|움직임.*원인|상승.*원인|하락.*원인|why|move/i.test(text);
+ return {intent:cross?'CROSS_ASSET_ANALYSIS':related?'RELATED_ASSET_SEARCH':move?'MOVE_ANALYSIS':'FORWARD_IMPACT',scenario:/늘어나면|증가하면|감소하면|증설하면|상승하면|하락하면|된다면|가정|만약|\bif\b/i.test(text),freshnessRequired:/오늘|최근|지금|왜|급등|급락|발표|신규|수주|증설|정책|ETF|상장|today|latest|why/i.test(text),resolutionKinds:cross?null:/코인|토큰|crypto/i.test(text)?['CRYPTO']:/미국|미장|nasdaq|nyse/i.test(text)?['US_STOCK']:/국내|한국|코스피|코스닥/.test(text)?['KR_STOCK']:null,assetKinds:cross?kinds:crypto?['CRYPTO']:kr?['KR_STOCK']:us?['US_STOCK']:kinds,terms:terms(text)};
+}
+export class CatalystError extends Error {constructor(code,message){super(message);this.code=code;}}
+export const messages={identity_ambiguous:'같은 이름의 자산이 여러 개입니다. 자산을 선택해 주세요.',identity_missing:'분석할 자산을 확인하지 못했습니다. 이름이나 티커를 선택해 주세요.',market_failed:'시세 수집 실패 · 가격 움직임의 원인 분석을 중단했습니다.',market_stale:'분석 기간에 맞는 최신 시세가 없어 원인 분석을 보류했습니다.',no_evidence:'확인할 수 있는 원문 근거가 없습니다.',body_unavailable:'자료 목록은 있지만 원문 본문을 확보하지 못했습니다.',cause_unclear:'명확한 단일 Catalyst를 확인하기 어렵습니다.',no_candidates:'전달경로가 확인된 관련 자산이 없습니다.',configuration_required:'서버 AI 설정이 필요합니다.',ai_failed:'AI 분석에 실패했습니다. 확인된 자료만 표시합니다.',budget_limit:'오늘의 AI 분석 한도에 도달했습니다. 저장된 자료는 계속 볼 수 있습니다.',rate_limit:'분석 요청이 많습니다. 잠시 후 다시 시도해 주세요.',timeout:'분석 시간이 초과되었습니다. 확보한 자료는 보존했습니다.',interrupted:'서버 재시작으로 분석이 중단되었습니다. 다시 분석해 주세요.'};
+export function limits(env){const n=(key,floor,def)=>Math.max(floor,Number(env[key])||def);const hard=n('AI_DAILY_HARD_LIMIT_TOKENS',1000,config.hardTokens);return {hard,soft:Math.min(hard,n('AI_DAILY_SOFT_LIMIT_TOKENS',1000,config.softTokens)),warning:Math.min(hard,n('AI_DAILY_WARNING_TOKENS',1000,config.warningTokens)),tpm:n('AI_TPM_SOFT_LIMIT',1000,config.tpm),rpm:n('AI_RPM_LIMIT',1,config.rpm),concurrent:Math.min(4,n('AI_MAX_CONCURRENT_REQUESTS',1,config.maxConcurrent))};}

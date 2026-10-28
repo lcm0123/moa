@@ -1,0 +1,3 @@
+import {finvizFutures} from './finviz-futures.mjs';
+import {fetchProvider,unavailable,validNumber} from './base.mjs';
+export async function futuresProvider(env,market){if(market==='US'&&env.FINVIZ_API_KEY&&!env.US_FUTURES_URL)return finvizFutures(env);const result=await fetchProvider(env,`${market}_FUTURES`);if(result.status==='ready'&&result.items.some(x=>!x.id||!x.name||!x.contractName||!/^\d{4}-(0[1-9]|1[0-2])$/.test(x.contractMonth)||!validNumber(x.value)||!validNumber(x.change)||!validNumber(x.changePct)||!Number.isFinite(Date.parse(x.asOf))))return unavailable('선물 계약명·계약월 또는 시세 정보를 확인해야 합니다.','error',result.policy);return result;}

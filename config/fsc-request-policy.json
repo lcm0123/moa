@@ -1,0 +1,14 @@
+{
+  "requestTimeoutMs": 12000,
+  "operationDeadlineMs": 60000,
+  "maxHistoryPages": 50,
+  "maxSnapshotPages": 50,
+  "maxDateLookbacks": 20,
+  "maxRequests": 70,
+  "maxRows": 50000,
+  "maxResponseBytes": 12000000,
+  "maxResponseChunks": 4096,
+  "maxConcurrentRequests": 2,
+  "maxRetries": 0,
+  "maxRetryAfterMs": 86400000
+}

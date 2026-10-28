@@ -1,0 +1,121 @@
+{
+  "version": "beneficiary-1.2",
+  "discoveryLeadLimit": 60,
+  "koreanResearchSlots": 24,
+  "initialLimit": 30,
+  "shortlistLimit": 12,
+  "finalLimit": 10,
+  "deepLimit": 5,
+  "discoveryQueries": 10,
+  "sourcesPerCandidate": 3,
+  "deepSourcesPerCandidate": 2,
+  "maxSourceCharacters": 11000,
+  "maxTokens": 40000,
+  "contextBytes": 36000,
+  "providerLimits": {
+    "Brave": 18,
+    "Exa": 24,
+    "TavilySearch": 8
+  },
+  "weights": {
+    "revenue": 45,
+    "directness": 20,
+    "sensitivity": 20,
+    "concentration": 0,
+    "customer": 8,
+    "momentum": 7
+  },
+  "levels": {
+    "HIGH": 1,
+    "MEDIUM": 0.6,
+    "LOW": 0.25
+  },
+  "revenueBands": {
+    "high": 0.5,
+    "medium": 0.15
+  },
+  "directness": {
+    "DIRECT": 1,
+    "ADJACENT": 0.6,
+    "THEMATIC": 0.25,
+    "WEAK": 0.1
+  },
+  "minimumFinalCoverage": 0.25,
+  "economicVersion": "economic-11.0",
+  "aiCallLimit": 7,
+  "purePlayQueries": 8,
+  "purePlayQueriesPerCategory": 2,
+  "minimumMaterialityInvestigated": 8,
+  "profileTtlMs": 86400000,
+  "revenueTiers": [
+    {
+      "min": 0.7,
+      "label": "VERY_HIGH",
+      "value": 1
+    },
+    {
+      "min": 0.4,
+      "label": "HIGH",
+      "value": 0.85
+    },
+    {
+      "min": 0.2,
+      "label": "UPPER_MID",
+      "value": 0.65
+    },
+    {
+      "min": 0.1,
+      "label": "MEDIUM",
+      "value": 0.45
+    },
+    {
+      "min": 0.05,
+      "label": "LOW",
+      "value": 0.25
+    },
+    {
+      "min": 0,
+      "label": "VERY_LOW",
+      "value": 0.1
+    }
+  ],
+  "concentrationTiers": [
+    {
+      "min": 0.7,
+      "label": "PURE_PLAY_HIGH",
+      "value": 1,
+      "dilution": 1
+    },
+    {
+      "min": 0.4,
+      "label": "FOCUSED",
+      "value": 0.8,
+      "dilution": 1
+    },
+    {
+      "min": 0.1,
+      "label": "DIVERSIFIED",
+      "value": 0.3,
+      "dilution": 0.8
+    },
+    {
+      "min": 0,
+      "label": "CONGLOMERATE_DILUTED",
+      "value": 0.1,
+      "dilution": 0.6
+    }
+  ],
+  "applicationValues": {
+    "TARGET_DIRECT": 1,
+    "PACKAGE_SUBSTRATE_DIRECT": 1,
+    "IC_SUBSTRATE_DIRECT": 1,
+    "PCB_DIRECT": 0.9,
+    "SUBSTRATE_UNSPECIFIED": 0.55,
+    "GLASS_SUBSTRATE_CONDITIONAL": 0.6,
+    "SEMICONDUCTOR_PACKAGING_ADJACENT": 0.45,
+    "SEMICONDUCTOR_ADJACENT": 0.25,
+    "GENERAL_ELECTRONICS": 0.1,
+    "UNKNOWN": 0
+  },
+  "coreMinimumShare": 0.4
+}

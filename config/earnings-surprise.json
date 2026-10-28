@@ -1,0 +1,18 @@
+{
+  "version": "surprise-1.2",
+  "displayPeriods": 8,
+  "historyDays": 800,
+  "windowDays": 84,
+  "cacheMs": 21600000,
+  "maxPublicationGapDays": 140,
+  "minPublicationGapDays": 45,
+  "nearZero": {"eps": 0.01, "USD": 1000, "KRW": 1000000, "relative": 0.001},
+  "clampPct": 100,
+  "neutralPct": 0.01,
+  "expansionPp": 0.5,
+  "strongBeatPct": 10,
+  "mediumBeatPct": 3,
+  "priceWarningPct": 5,
+  "weights": {"KR": {"operatingIncome": 0.6, "revenue": 0.25, "netIncome": 0.15}, "US": {"eps": 0.55, "revenue": 0.35, "operatingIncome": 0.1}},
+  "score": {"strong": 3, "medium": 2, "small": 1, "twoStreak": 1, "threeStreak": 2, "expansion": 2, "deceleration": -1, "joint": 1, "turnaround": 3}
+}

@@ -1,0 +1,5 @@
+// CMC category display configuration; no manually assigned coin memberships.
+export const categoryLabels={'DeFi':'탈중앙 금융','Layer 1':'레이어 1','Layer 2':'레이어 2','AI & Big Data':'AI·빅데이터','Gaming':'게임','Real World Assets Protocols':'실물자산 RWA','Memes':'밈','Stablecoin':'스테이블코인','Privacy':'프라이버시','Filesharing':'파일 공유','Oracles':'오라클'};
+export const primaryPriority=['Stablecoin','Memes','AI & Big Data','Gaming','Real World Assets Protocols','DeFi','Layer 2','Layer 1','Privacy','Filesharing','Oracles'];
+export function categoryInfo(c){return {id:String(c.id),name:c.name,label:categoryLabels[c.name]||c.name,group:/portfolio/i.test(c.name)?'portfolio':/ecosystem/i.test(c.name)?'ecosystem':'sector',numTokens:c.num_tokens,asOf:c.last_updated};}
+export function primaryCategory(categories){return [...categories].sort((a,b)=>{const ai=primaryPriority.indexOf(a.name),bi=primaryPriority.indexOf(b.name);return (ai<0?999:ai)-(bi<0?999:bi)||a.id.localeCompare(b.id);})[0]||{id:'unclassified',name:'Unclassified',label:'미분류',group:'sector'};}

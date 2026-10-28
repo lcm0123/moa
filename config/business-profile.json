@@ -1,0 +1,21 @@
+{
+  "version": "profile-db-2",
+  "historyQuarters": 8,
+  "pageSize": 100,
+  "maxBatchCompanies": 25,
+  "maxBatchRequests": 100,
+  "dailyProfileRequestLimit": 2000,
+  "requestReservationPerCompany": 18,
+  "maxAttempts": 3,
+  "providerCooldownMs": 21600000,
+  "leaseMs": 300000,
+  "workerHeapMB": 128,
+  "workerTimeoutMs": 1200000,
+  "aiCalls": 0,
+  "searchCalls": 0,
+  "domesticAuto": {
+    "intervalMs": 15000,
+    "registryRefreshMs": 86400000,
+    "profileRefreshMs": 604800000
+  }
+}

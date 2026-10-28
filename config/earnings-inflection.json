@@ -1,0 +1,11 @@
+{
+  "version": "inflection-1.1",
+  "minimumQuarters": 7,
+  "displayQuarters": 8,
+  "trendQuarters": 3,
+  "growthChangePp": 0.5,
+  "marginChangePp": 0.25,
+  "profitChangeRevenuePp": 0.5,
+  "weights": {"revenueAcceleration":1,"operatingProfitAcceleration":2,"marginExpansion":2,"epsAcceleration":1,"lossReduction":1,"profitTurnaround":3,"continuedImprovement":1,"growthAcceleration":1,"growthSlowdown":-1,"profitDeterioration":-2,"marginContraction":-2,"epsDeterioration":-1,"lossExpansion":-2,"lossTurnaround":-3,"continuedDeterioration":-1},
+  "bands": [{"min":7,"label":"강한 개선"},{"min":3,"label":"개선 전환"},{"min":1,"label":"개선 조짐"},{"min":0,"label":"중립"},{"min":-2,"label":"둔화 조짐"},{"min":-6,"label":"악화 전환"},{"min":-100,"label":"강한 악화"}]
+}

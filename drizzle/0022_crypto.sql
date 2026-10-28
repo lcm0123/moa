@@ -1,0 +1,3 @@
+CREATE TABLE IF NOT EXISTS cmc_cache (cache_key TEXT PRIMARY KEY, payload TEXT NOT NULL, received_at TEXT NOT NULL, expires_at INTEGER NOT NULL);
+CREATE TABLE IF NOT EXISTS cmc_usage (day TEXT PRIMARY KEY, rest_credits REAL NOT NULL DEFAULT 0, ws_messages INTEGER NOT NULL DEFAULT 0, requests INTEGER NOT NULL DEFAULT 0);
+CREATE TABLE IF NOT EXISTS cmc_diagnostics (endpoint TEXT PRIMARY KEY, http_status INTEGER, code TEXT, message TEXT, checked_at TEXT NOT NULL, retry_after INTEGER NOT NULL DEFAULT 0);

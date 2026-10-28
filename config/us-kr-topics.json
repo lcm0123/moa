@@ -1,0 +1,232 @@
+{
+  "version": "business-links-2026-10-03-v4",
+  "universe": "현재 관측 S&P 500·나스닥100·다우30 합집합",
+  "minIndustryCount": 3,
+  "minCoverage": 0.8,
+  "minBacktestSamples": 20,
+  "topics": [
+    {
+      "id": "memory",
+      "name": "메모리 반도체",
+      "products": [
+        "DRAM",
+        "NAND",
+        "메모리 반도체",
+        "HBM"
+      ],
+      "industries": [
+        {
+          "name": "Semiconductors",
+          "relation": "same_product"
+        }
+      ]
+    },
+    {
+      "id": "design",
+      "name": "반도체 설계·시스템 반도체",
+      "products": [
+        "모바일AP",
+        "시스템반도체",
+        "팹리스",
+        "SoC"
+      ],
+      "industries": [
+        {
+          "name": "Semiconductors",
+          "relation": "same_product"
+        }
+      ]
+    },
+    {
+      "id": "foundry",
+      "name": "파운드리",
+      "products": [
+        "파운드리",
+        "Foundry",
+        "수탁생산"
+      ],
+      "industries": [
+        {
+          "name": "Semiconductors",
+          "relation": "same_product"
+        }
+      ]
+    },
+    {
+      "id": "equipment",
+      "name": "반도체 장비",
+      "products": [
+        "반도체장비",
+        "반도체 장비",
+        "식각장비",
+        "증착장비",
+        "레이저 어닐링"
+      ],
+      "industries": [
+        {
+          "name": "Semiconductor Equipment & Materials",
+          "relation": "same_product"
+        },
+        {
+          "name": "Semiconductors",
+          "relation": "component_equipment"
+        }
+      ]
+    },
+    {
+      "id": "materials",
+      "name": "반도체 소재",
+      "products": [
+        "포토레지스트",
+        "반도체 소재",
+        "반도체용 특수가스",
+        "실리콘 웨이퍼"
+      ],
+      "industries": [
+        {
+          "name": "Semiconductor Equipment & Materials",
+          "relation": "same_product"
+        },
+        {
+          "name": "Semiconductors",
+          "relation": "raw_material"
+        }
+      ]
+    },
+    {
+      "id": "packaging",
+      "name": "반도체 패키징·테스트",
+      "products": [
+        "반도체 패키징",
+        "반도체 조립",
+        "반도체 테스트",
+        "반도체 후공정"
+      ],
+      "industries": [
+        {
+          "name": "Semiconductors",
+          "relation": "component_equipment"
+        }
+      ]
+    },
+    {
+      "id": "consumer_devices",
+      "name": "소비자 전자제품",
+      "products": [
+        "TV",
+        "모니터",
+        "냉장고",
+        "세탁기",
+        "에어컨",
+        "스마트폰",
+        "네트워크시스템",
+        "PC"
+      ],
+      "industries": [
+        {
+          "name": "Consumer Electronics",
+          "relation": "same_product"
+        }
+      ]
+    },
+    {
+      "id": "display",
+      "name": "디스플레이 패널",
+      "products": [
+        "OLED",
+        "LCD 패널",
+        "디스플레이 패널"
+      ],
+      "industries": [
+        {
+          "name": "Electronic Components",
+          "relation": "same_product"
+        },
+        {
+          "name": "Consumer Electronics",
+          "relation": "component_equipment"
+        }
+      ]
+    },
+    {
+      "id": "battery",
+      "name": "이차전지",
+      "products": [
+        "이차전지",
+        "리튬이온전지",
+        "배터리 셀"
+      ],
+      "industries": [
+        {
+          "name": "Electrical Equipment & Parts",
+          "relation": "same_product"
+        },
+        {
+          "name": "Auto Manufacturers",
+          "relation": "component_equipment"
+        }
+      ]
+    },
+    {
+      "id": "automotive",
+      "name": "자동차",
+      "products": [
+        "완성차",
+        "승용차",
+        "상용차"
+      ],
+      "industries": [
+        {
+          "name": "Auto Manufacturers",
+          "relation": "same_product"
+        }
+      ]
+    },
+    {
+      "id": "biopharma",
+      "name": "의약품",
+      "products": [
+        "바이오의약품",
+        "항체의약품",
+        "의약품"
+      ],
+      "industries": [
+        {
+          "name": "Drug Manufacturers - General",
+          "relation": "same_product"
+        },
+        {
+          "name": "Biotechnology",
+          "relation": "same_product"
+        }
+      ]
+    },
+    {
+      "id": "energy",
+      "name": "석유·정유",
+      "products": [
+        "휘발유",
+        "경유",
+        "항공유",
+        "정유"
+      ],
+      "industries": [
+        {
+          "name": "Oil & Gas Refining & Marketing",
+          "relation": "same_product"
+        }
+      ]
+    }
+  ],
+  "relations": {
+    "same_product": "동일 제품·사업",
+    "component_equipment": "부품·장비 공급 영역",
+    "raw_material": "원재료 공급 영역",
+    "customer": "공시로 확인한 고객사",
+    "competitor": "공시로 확인한 경쟁사",
+    "pending": "연관성 확인 중"
+  },
+  "validBacktestVersions": [
+    "business-links-2026-10-03-v4"
+  ]
+}

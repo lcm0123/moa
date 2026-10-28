@@ -1,0 +1,4 @@
+/* Public source export: small status/attribution text, no external font asset. */
+.public-source-notice{margin:16px 24px 24px 100px;color:var(--secondary);font:12px/1.6 var(--font);overflow-wrap:anywhere}
+.public-source-notice a{color:var(--brand-ink);text-underline-offset:3px}
+@media(max-width:760px){.public-source-notice{margin:16px 16px 96px}}
